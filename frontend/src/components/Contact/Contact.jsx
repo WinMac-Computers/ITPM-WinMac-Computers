@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <div className="antialiased mt-10 p-10" id="contact">
+    <div className="antialiased mt-10 p-10 my-12 translate-y-12" id="contact">
       <div className="flex w-full min-h-screen justify-center items-center">
         <div className="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 bg-sky-800 w-full max-w-4xl p-8 sm:p-12 rounded-xl shadow-lg text-white overflow-hidden">
           <div className="flex flex-col space-y-8 justify-between">
