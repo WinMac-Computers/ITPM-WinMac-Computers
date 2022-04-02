@@ -2,26 +2,36 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
-import Navbar from "./components/Navbar/Navbar";
-
 import Login from "./components/Login/Login";
 import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
+import Product from "./components/Admin/Product/Product";
+import Create from "./components/Admin/Product/Create";
+import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import Navbar from "./components/Navbar/Navbar";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const App = () => {
   return (
     <div>
       <Router>
-        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/" element={[<Navbar />, <Home />, <Footer />]} />
+          <Route path="/login" element={[<Navbar />, <Login />, <Footer />]} />
+          <Route path="/about" element={[<Navbar />, <About />, <Footer />]} />
+          <Route path="/contact" element={[<Navbar />, <Contact />, <Footer />]} />
+          <Route path="/services" element={[<Navbar />, <Services />, <Footer />]} />
+
+          <Route
+            path="/admin-dashboard/:username"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );
