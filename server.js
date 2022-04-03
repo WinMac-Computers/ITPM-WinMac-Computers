@@ -33,4 +33,6 @@ app.use("/payment", require("./backend/routes/Payment"));
 
 app.use("/product", require("./backend/routes/Product"));
 app.use("/promotion", require("./backend/routes/Promotion"));
+app.use("/customer", require("./backend/routes/Customer"));
+
 
