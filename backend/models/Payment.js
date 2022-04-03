@@ -11,9 +11,6 @@ const Payment = new Schema({
     payDate: {
         type: Date,
     },
-    cardType: {
-        type: String,
-    },
     netPrice: {
         type: Number,
     },
