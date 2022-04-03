@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../../assets/Navbar/winmaclogo.png";
+import Logo from "../../assets/Logo/winmaclogo.png";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Carousel } from 'antd';
 
 const contentStyle = {
@@ -25,6 +26,12 @@ const Customer = () => {
       <h3 style={contentStyle}>4</h3>
     </div>
   </Carousel></div>
+
+
+const Customer = () => {
+  return (
+    <div>Customer</div>
+
   )
 }
 
