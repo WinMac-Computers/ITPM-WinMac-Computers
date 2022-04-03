@@ -1,38 +1,37 @@
-import React from 'react'
+import React from "react";
 
-import { Carousel } from 'antd';
+import { Carousel } from "antd";
 
 import img1 from "../assets/Customer/1.jpg";
 import img2 from "../assets/Customer/2.jpg";
 import img3 from "../assets/Customer/3.jpg";
 import img4 from "../assets/Customer/4.jpg";
+import { Button } from "antd/lib/radio";
 
-const contentStyle = {
-  height: '650px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
+import { Link } from "react-router-dom";
 
 const Customer = () => {
   return (
-    <div> <Carousel autoplay>
     <div>
-      <h3 style={img1}>1</h3>
+      <Link to="/createprofile">
+        <Button>Create</Button>
+      </Link>{" "}
+      <Carousel autoplay>
+        <div>
+          <img src={img1} />
+        </div>
+        <div>
+          <img src={img2} />
+        </div>
+        <div>
+          <img src={img3} />
+        </div>
+        <div>
+          <img src={img4} />
+        </div>
+      </Carousel>
     </div>
-    <div>
-      <h3 style={img2}>2</h3>
-    </div>
-    <div>
-      <h3 style={img3}>3</h3>
-    </div>
-    <div>
-      <h3 style={img4}>4</h3>
-    </div>
-  </Carousel></div>
+  );
+};
 
-  )
-}
-
-export default Customer
+export default Customer;
