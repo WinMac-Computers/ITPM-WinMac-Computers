@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Carousel } from 'antd';
 
 import img1 from "../assets/Customer/1.jpg";
@@ -30,6 +31,12 @@ const Customer = () => {
       <h3 style={img4}>4</h3>
     </div>
   </Carousel></div>
+
+
+const Customer = () => {
+  return (
+    <div>Customer</div>
+
   )
 }
 
