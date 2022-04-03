@@ -32,11 +32,6 @@ const Customer = () => {
     </div>
   </Carousel></div>
 
-
-const Customer = () => {
-  return (
-    <div>Customer</div>
-
   )
 }
 
