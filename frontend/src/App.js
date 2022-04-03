@@ -11,6 +11,7 @@ import Create from "./components/Admin/Product/Create";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
+import CreateProfile from "./components/Admin/Customer/CreateProfile";
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
           <Route path="/about" element={[<Navbar />, <About />, <Footer />]} />
           <Route path="/contact" element={[<Navbar />, <Contact />, <Footer />]} />
           <Route path="/services" element={[<Navbar />, <Services />, <Footer />]} />
+
+          {/* Admin */}
+          <Route path="/createprofile" element={<CreateProfile/>} />
 
           <Route
             path="/admin-dashboard/:username"
