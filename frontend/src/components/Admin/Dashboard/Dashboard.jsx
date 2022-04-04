@@ -15,8 +15,8 @@ import {
 import "antd/dist/antd.css";
 import "./Dashboard.css";
 import Payment from "../Payment/Payment";
-import Product from "../Product/Product";
-import Promotion from "../Promotion/Promotion";
+import PDashboard from "../Product/PDashboard";
+import PromotionDashboard from "../Promotion/PromotionDashboard";
 import Order from "../Order/Order";
 import Customer from "../Customer/Customer";
 import Delivery from "../Delivery/Delivery";
@@ -260,8 +260,8 @@ const Dashboard = () => {
             !queryOrder &&
             !queryDelivery}
           {queryCustomer === "customer" && <Customer />}
-          {queryProduct === "product" && <Product />}
-          {queryPromotion === "promotion" && <Promotion />}
+          {queryProduct === "product" && <PDashboard />}
+          {queryPromotion === "promotion" && <PromotionDashboard />}
           {queryPayment === "payment" && <Payment />}
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
