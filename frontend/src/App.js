@@ -12,6 +12,7 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import CreateProfile from "./components/Admin/Customer/CreateProfile";
+import Pcreate from "./components/Admin/Product/Create";
 
 const App = () => {
   return (
@@ -21,17 +22,31 @@ const App = () => {
           <Route path="/" element={[<Navbar />, <Home />, <Footer />]} />
           <Route path="/login" element={[<Navbar />, <Login />, <Footer />]} />
           <Route path="/about" element={[<Navbar />, <About />, <Footer />]} />
-          <Route path="/contact" element={[<Navbar />, <Contact />, <Footer />]} />
-          <Route path="/services" element={[<Navbar />, <Services />, <Footer />]} />
+          <Route
+            path="/contact"
+            element={[<Navbar />, <Contact />, <Footer />]}
+          />
+          <Route
+            path="/services"
+            element={[<Navbar />, <Services />, <Footer />]}
+          />
 
           {/* Admin */}
-          <Route path="/createprofile" element={<CreateProfile/>} />
+          <Route path="/createprofile" element={<CreateProfile />} />
 
           <Route
             path="/admin-dashboard/:username"
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard/:username/create"
+            element={
+              <PrivateRoute>
+                <Pcreate />
               </PrivateRoute>
             }
           />
