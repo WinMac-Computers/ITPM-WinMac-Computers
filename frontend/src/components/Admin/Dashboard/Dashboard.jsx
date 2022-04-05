@@ -15,10 +15,16 @@ import {
 import "antd/dist/antd.css";
 import "./Dashboard.css";
 import Payment from "../Payment/Payment";
+
 import PDashboard from "../Product/PDashboard";
+import Product from "../Product/Product";
+
 import PromotionDashboard from "../Promotion/PromotionDashboard";
+
 import Order from "../Order/Order";
+
 import Customer from "../Customer/Customer";
+
 import Delivery from "../Delivery/Delivery";
 
 import Logo from "../../../assets/Logo/winmaclogo.png";
@@ -260,7 +266,7 @@ const Dashboard = () => {
             !queryOrder &&
             !queryDelivery}
           {queryCustomer === "customer" && <Customer />}
-          {queryProduct === "product" && <PDashboard />}
+          {queryProduct === "product" && <PDashboard /> }
           {queryPromotion === "promotion" && <PromotionDashboard />}
           {queryPayment === "payment" && <Payment />}
           {queryOrder === "order" && <Order />}
