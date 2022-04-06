@@ -1,11 +1,10 @@
-import React, {useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import Log from "../../assets/Login/log.png";
 import Register from "../../assets/Login/register.svg";
-
 
 const Login = () => {
   const containerRef = useRef(null);
@@ -47,7 +46,7 @@ const Login = () => {
         config
       );
 
-      localStorage.setItem("authToken", data.Token); //set the browser caching or local storage for globally accessed anywhere in the application
+      localStorage.setItem("authToken", data.token); //set the browser caching or local storage for globally accessed anywhere in the application
       localStorage.setItem("username", data.username);
       localStorage.setItem("email", data.email);
       localStorage.setItem("type", data?.type);
@@ -60,7 +59,7 @@ const Login = () => {
         //set a 5seconds timeout for authentication
 
         if (data.type === "Admin" && data.dept === "CM") {
-          navigate(`/admin-dashboard/null?_optCustomer=customer${data.username}`);
+          navigate(`/admin-dashboard/${data.username}`);
         } else if (data.type === "Admin" && data.dept === "PM") {
           navigate(`/admin-dashboard/${data.username}`);
         } else if (data.type === "Admin" && data.dept === "PRM") {
@@ -164,16 +163,23 @@ const Login = () => {
               />
             </div>
             <label className="float-left form-check-label">
+              <div className="text-white">
                 <input type="checkbox" onClick={showPassword} /> Show Password{" "}
                 <i class="fa fa-rss" aria-hidden="true"></i>
-              </label>
-              <br />
-              {isError && (
-                <small className="mt-3 d-inline-block text-danger">
-                  Something went wrong. Please try again later.
-                </small>
-              )}
-            <input type="submit" value="Login" className="btn solid" disabled={loading} />
+              </div>
+            </label>
+            <br />
+            {isError && (
+              <small className="mt-3 d-inline-block text-red-600 text-xl">
+                Something went wrong. Please try again later.
+              </small>
+            )}
+            <input
+              type="submit"
+              value="Login"
+              className="btn solid"
+              disabled={loading}
+            />
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
