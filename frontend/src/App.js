@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import CreateProfile from "./components/Admin/Customer/CreateProfile";
 import Pcreate from "./components/Admin/Product/Create";
+import Payedit from "./components/Admin/Payment/Edit.jsx";
 
 const App = () => {
   return (
@@ -47,6 +48,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Pcreate />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard/:username/edit"
+            element={
+              <PrivateRoute>
+                <Payedit />
               </PrivateRoute>
             }
           />

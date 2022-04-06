@@ -1,10 +1,6 @@
 const User = require("../models/Auth");
 const SendEmail = require("../utilities/SendEmail");
 const crypto = require("crypto");
-const { once } = require("events");
-const req = require("express/lib/request");
-const res = require("express/lib/response");
-const { use } = require("bcrypt/promises");
 
 //when we use asynchronous function we need try catch block
 exports.register = async (req, res) => {
