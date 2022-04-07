@@ -10,9 +10,6 @@ import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
-import CreateProfile from "./components/Admin/Customer/CreateProfile";
-import Pcreate from "./components/Admin/Product/Create";
-import Payedit from "./components/Admin/Payment/Edit.jsx";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 
 const App = () => {
@@ -33,8 +30,7 @@ const App = () => {
           />
 
           {/* Admin */}
-          <Route path="/createprofile" element={<CreateProfile />} />
-
+    
           <Route
             path="/admin-dashboard/:username"
             element={
@@ -42,25 +38,7 @@ const App = () => {
                 <Dashboard />
               </PrivateRoute>
             }
-          />
-
-          <Route
-            path="/admin-dashboard/:username/create"
-            element={
-              <PrivateRoute>
-                <Pcreate />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/:username/edit"
-            element={
-              <PrivateRoute>
-                <Payedit />
-              </PrivateRoute>
-            }
-          />
-              
+          /> 
         </Routes>
       </Router>
     </div>

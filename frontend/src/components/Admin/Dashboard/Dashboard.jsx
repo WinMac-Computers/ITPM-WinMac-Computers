@@ -17,6 +17,7 @@ import "./Dashboard.css";
 import Payment from "../Payment/Payment";
 
 import PDashboard from "../Product/PDashboard";
+import PNavBar from "../Product/NavBar";
 
 import Product from "../Product/Product";
 
@@ -46,6 +47,8 @@ const Dashboard = () => {
   const queryPayment = param.get("_optPayment");
   const queryOrder = param.get("_optOrder");
   const queryDelivery = param.get("_optDelivery");
+
+  const queryDisplayproduct = param.get("_product");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -269,11 +272,12 @@ const Dashboard = () => {
             !queryOrder &&
             !queryDelivery} */}
           {queryCustomer === "customer" && <Customer />}
-          {queryProduct === "product" && <PDashboard /> }
+          {queryProduct === "product" && [<PNavBar/>,<PDashboard />] }
           {queryPromotion === "promotion" && <PromotionDashboard />}
           {queryPayment === "payment" && <Payment />}
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
+          {queryDisplayproduct === "true" && [<PNavBar/>,<Product/>]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
