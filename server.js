@@ -30,4 +30,5 @@ app.listen(PORT, () => {
 
 app.use("/product", require("./backend/routes/Product"));
 app.use("/promotion", require("./backend/routes/Promotion"));
+app.use("/delivery", require("./backend/routes/Delivery"));
 
