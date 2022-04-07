@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// common
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
-import Product from "./components/Admin/Product/Product";
-import Create from "./components/Admin/Product/Create";
-import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import CreateProfile from "./components/Admin/Customer/CreateProfile";
 import Pcreate from "./components/Admin/Product/Create";
 import Payedit from "./components/Admin/Payment/Edit.jsx";
+import Dashboard from "./components/Admin/Dashboard/Dashboard";
 
 const App = () => {
   return (
@@ -43,6 +43,7 @@ const App = () => {
               </PrivateRoute>
             }
           />
+
           <Route
             path="/admin-dashboard/:username/create"
             element={
@@ -59,6 +60,7 @@ const App = () => {
               </PrivateRoute>
             }
           />
+              
         </Routes>
       </Router>
     </div>
