@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DeleteTwoTone } from "@ant-design/icons";
+import { Button } from "antd";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   const [data, setData] = useState([]);
+
 
   useEffect(() => {
     (async () => {
@@ -110,6 +113,15 @@ const Product = () => {
               </table>
             </div>
           </div>
+          <Link
+            to={`/admin-dashboard/${localStorage.getItem(
+              "username"
+            )}/create`}
+          >
+            <Button type="primary" danger>
+              Add Product
+            </Button>
+          </Link>
         </div>
       </div>
     </center>

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const Product = new Schema({
   productNumber: {
-    type: String,
+    type: String
   },
   productName: {
     type: String
@@ -15,7 +15,7 @@ const Product = new Schema({
     type: Number
   },
   qty: {
-    type: Number,
+    type: Number
   },
   image: {
     type: String
