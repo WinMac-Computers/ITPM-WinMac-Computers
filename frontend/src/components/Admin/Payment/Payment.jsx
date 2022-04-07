@@ -97,7 +97,7 @@ const Payment = () => {
                               {value.payDate}
                             </td>
                             <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
-                              {value.netPrice}
+                              Rs.{value.netPrice}
                             </td>
                             <td class="text-2xl px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
                               <div className="cursor-pointer">
