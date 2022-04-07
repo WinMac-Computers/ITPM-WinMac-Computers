@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Button, Spin } from "antd";
 import { HomeTwoTone } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 import img1 from "../assets/Product/img1.jpg";
 
 const PDashboard = () => {
+  const history = useNavigate;
+
   const [spin, setSpin] = useState(false);
 
   useEffect(() => {

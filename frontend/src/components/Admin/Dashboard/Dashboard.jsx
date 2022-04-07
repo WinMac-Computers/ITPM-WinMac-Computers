@@ -17,6 +17,7 @@ import "./Dashboard.css";
 import Payment from "../Payment/Payment";
 
 import PDashboard from "../Product/PDashboard";
+
 import Product from "../Product/Product";
 
 import PromotionDashboard from "../Promotion/PromotionDashboard";
@@ -36,7 +37,9 @@ const Dashboard = () => {
   const history = useNavigate();
   const location = useLocation();
   const search = window.location.search;
+
   const param = new URLSearchParams(search);
+
   const queryCustomer = param.get("_optCustomer");
   const queryProduct = param.get("_optProduct");
   const queryPromotion = param.get("_optPromotion");
@@ -257,14 +260,14 @@ const Dashboard = () => {
             <Breadcrumb.Item>{greet}</Breadcrumb.Item>
             <Breadcrumb.Item>Admin</Breadcrumb.Item>
           </Breadcrumb>
-          {location.pathname ===
+          {/* {location.pathname ===
             `/admin-dashboard/${localStorage.getItem("username")}` &&
             !queryCustomer &&
             !queryProduct &&
             !queryPromotion &&
             !queryPayment &&
             !queryOrder &&
-            !queryDelivery}
+            !queryDelivery} */}
           {queryCustomer === "customer" && <Customer />}
           {queryProduct === "product" && <PDashboard /> }
           {queryPromotion === "promotion" && <PromotionDashboard />}
