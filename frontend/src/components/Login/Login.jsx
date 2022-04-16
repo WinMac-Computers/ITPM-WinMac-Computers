@@ -30,6 +30,8 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const antIcon = <LoadingOutlined style={{ fontSize: 24, marginBottom: "2px" }} spin />;
+  
   const loginHandler = async (e) => {
     //handler method for login
     e.preventDefault();
