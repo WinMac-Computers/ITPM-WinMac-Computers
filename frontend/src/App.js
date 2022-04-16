@@ -11,6 +11,8 @@ import Services from "./components/Services/Services";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import Pcreate from "./components/Admin/Product/Create";
+import Payedit from "./components/Admin/Payment/Edit";
 
 const App = () => {
   return (
