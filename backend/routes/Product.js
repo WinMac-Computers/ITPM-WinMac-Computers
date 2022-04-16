@@ -1,8 +1,33 @@
 const router = require("express").Router();
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+let path = require("path");
+
 const Product = require("../models/Product");
 
+const storage = multer.diskStorage({
+  designation: function (req, file, cb) {
+    cb(null, "./frontend/public/images");
+  },
+
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+let upload = multer({ storage, fileFilter });
+
 //route for creating database insertion
-router.route("/create").post(async (req, res) => {
+router.route("/create").post(upload.single("image"),async (req, res) => {
   const {
     productNumber,
     productName,
@@ -80,7 +105,7 @@ router.route("/delete/:id").delete(async (req, res) => {
 });
 
 //route for updating a relavant document using id
-router.route("/update/:id").put(async (req, res) => {
+router.route("/update/:id").put(upload.single("photo"),async (req, res) => {
   //backend route for updating relavant data and passing back
   const { id } = req.params;
   const {

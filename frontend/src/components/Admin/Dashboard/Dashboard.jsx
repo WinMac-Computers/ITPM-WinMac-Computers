@@ -14,12 +14,19 @@ import {
 
 import "antd/dist/antd.css";
 import "./Dashboard.css";
+
 import Payment from "../Payment/Payment";
 
-import PDashboard from "../Product/PDashboard";
+//product components
+import ProductDashboard from "../Product/Dashboard";
+import ProductNavBar from "../Product/NavBar";
 import Product from "../Product/Product";
+import AddProduct from "../Product/Create";
+import ReportProduct from "../Product/Report";
 
-import PromotionDashboard from "../Promotion/PromotionDashboard";
+//promotion components
+import PromotionDashboard from "../Promotion/Dashboard";
+import PromotionNavBar from "../Product/NavBar";
 
 import Order from "../Order/Order";
 
@@ -32,17 +39,24 @@ import Logo from "../../../assets/Logo/winmaclogo.png";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
+
   const [collapsed, setCollapsed] = useState(false);
   const history = useNavigate();
   const location = useLocation();
   const search = window.location.search;
+
   const param = new URLSearchParams(search);
+
   const queryCustomer = param.get("_optCustomer");
   const queryProduct = param.get("_optProduct");
   const queryPromotion = param.get("_optPromotion");
   const queryPayment = param.get("_optPayment");
   const queryOrder = param.get("_optOrder");
   const queryDelivery = param.get("_optDelivery");
+
+  const queryDisplayproduct = param.get("_product");
+  const queryAddproduct = param.get("_product");
+  const queryReportProduct = param.get("_product");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -257,20 +271,23 @@ const Dashboard = () => {
             <Breadcrumb.Item>{greet}</Breadcrumb.Item>
             <Breadcrumb.Item>Admin</Breadcrumb.Item>
           </Breadcrumb>
-          {location.pathname ===
+          {/* {location.pathname ===
             `/admin-dashboard/${localStorage.getItem("username")}` &&
             !queryCustomer &&
             !queryProduct &&
             !queryPromotion &&
             !queryPayment &&
             !queryOrder &&
-            !queryDelivery}
+            !queryDelivery} */}
           {queryCustomer === "customer" && <Customer />}
-          {queryProduct === "product" && <PDashboard /> }
-          {queryPromotion === "promotion" && <PromotionDashboard />}
+          {queryProduct === "product" && [<ProductNavBar/>,<ProductDashboard />] }
+          {queryPromotion === "promotion" && [<PromotionNavBar/>,<PromotionDashboard />]}
           {queryPayment === "payment" && <Payment />}
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
+          {queryDisplayproduct === "allproduct" && [<ProductNavBar/>,<Product/>]}
+          {queryAddproduct === "addproduct" && [<ProductNavBar/>,<AddProduct/>]}
+          {queryReportProduct === "report" && [<ProductNavBar/>,<ReportProduct/>]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
