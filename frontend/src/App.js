@@ -53,14 +53,13 @@ const App = () => {
             }
           />
           <Route
-            path="/admin-dashboard/:username/edit"
+            path="/admin-dashboard/edit/:id"
             element={
               <PrivateRoute>
                 <Payedit />
               </PrivateRoute>
             }
           />
-              
         </Routes>
       </Router>
     </div>
