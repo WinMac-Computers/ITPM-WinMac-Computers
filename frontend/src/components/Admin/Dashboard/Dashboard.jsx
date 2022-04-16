@@ -15,7 +15,12 @@ import {
 import "antd/dist/antd.css";
 import "./Dashboard.css";
 
+//payment components
+import PaymentDashboard from "../Payment/PayDashboard";
+import PayNavBar from "../Payment/NavBar";
 import Payment from "../Payment/Payment";
+import EditPayment from "../Payment/Edit";
+import ReportPayment from "../Payment/Report";
 
 //product components
 import ProductDashboard from "../Product/Dashboard";
@@ -50,7 +55,13 @@ const Dashboard = () => {
   const queryCustomer = param.get("_optCustomer");
   const queryProduct = param.get("_optProduct");
   const queryPromotion = param.get("_optPromotion");
+
+  //Payment
   const queryPayment = param.get("_optPayment");
+  const queryDisplaypayment = param.get("_payment");
+  const queryEditpayment = param.get("_payment");
+  const queryReportPayment = param.get("_payment");
+
   const queryOrder = param.get("_optOrder");
   const queryDelivery = param.get("_optDelivery");
 
@@ -282,7 +293,13 @@ const Dashboard = () => {
           {queryCustomer === "customer" && <Customer />}
           {queryProduct === "product" && [<ProductNavBar/>,<ProductDashboard />] }
           {queryPromotion === "promotion" && [<PromotionNavBar/>,<PromotionDashboard />]}
-          {queryPayment === "payment" && <Payment />}
+
+          {/* Payment */}
+          {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />] }
+          {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />] }
+          {queryEditpayment === "editpayment" && [<PayNavBar />, <EditPayment />] }
+          {queryReportPayment === "paymentreport" && [<PayNavBar />, <ReportPayment />] }
+          
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
           {queryDisplayproduct === "allproduct" && [<ProductNavBar/>,<Product/>]}
