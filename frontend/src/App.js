@@ -38,7 +38,26 @@ const App = () => {
                 <Dashboard />
               </PrivateRoute>
             }
-          /> 
+
+          />
+
+          <Route
+            path="/admin-dashboard/:username/create"
+            element={
+              <PrivateRoute>
+                <Pcreate />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard/edit/:id"
+            element={
+              <PrivateRoute>
+                <Payedit />
+              </PrivateRoute>
+            }
+          />
+
         </Routes>
       </Router>
     </div>
