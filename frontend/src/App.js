@@ -32,7 +32,7 @@ const App = () => {
           />
 
           {/* Admin */}
-    
+
           <Route
             path="/admin-dashboard/:username"
             element={
@@ -40,7 +40,7 @@ const App = () => {
                 <Dashboard />
               </PrivateRoute>
             }
-
+            
           />
 
           <Route
