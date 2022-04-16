@@ -19,7 +19,7 @@ const PayDashboard = () => {
           </div>
         ) : (
           <>
-            <div>
+            <div className="mt-2">
               <img src={img} alt="paydash" />
             </div>
           </>

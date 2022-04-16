@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Form, Input, Button, Spin, Tooltip, notification, DatePicker } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import {
   InfoCircleOutlined,
+  LoadingOutlined
 } from "@ant-design/icons";
 
 import axios from "axios";
@@ -36,6 +36,8 @@ const Edit= () => {
   const [error, setError] = useState(false);
 
   const { id } = useParams(); 
+
+  const antIcon = <LoadingOutlined style={{ fontSize: 24, marginBottom: "2px" }} spin />;
 
   useEffect(() => {
     setTimeout(() => {
@@ -202,6 +204,7 @@ const Edit= () => {
               showCount
               value={netPrice}
               onChange={(e) => setNetPrice(e.target.value)}
+              type="number"
             />
           </Form.Item>
 
@@ -211,7 +214,7 @@ const Edit= () => {
             <Button type="primary" htmlType="submit">
               {loading ? (
                 <>
-                  <Spin /> Updating in Progess...
+                  <Spin indicator={antIcon} /> Updating in Progess...
                 </>
               ) : (
                 "Update"

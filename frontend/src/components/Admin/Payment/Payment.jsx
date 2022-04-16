@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
-import { Spin } from "antd";
+import { Spin, notification } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import "antd/dist/antd.css";
 import moment from "moment";
@@ -95,7 +95,7 @@ const Payment = () => {
                               {value.qty}
                             </td>
                             <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
-                              {value.payDate}
+                              {moment(value.payDate).format("DD/MM/YYYY")}
                             </td>
                             <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
                               Rs.{value.netPrice}
