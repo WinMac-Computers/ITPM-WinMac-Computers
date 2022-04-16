@@ -2,13 +2,14 @@ import React, { useState, useEffect} from "react";
 import { Button, Spin } from "antd";
 import { HomeTwoTone } from "@ant-design/icons";
 
-
+import { Link } from "react-router-dom";
 import Riderlist from "./Riderlist";
 
 import img2 from "../assets/Delivery/delivery.png"
 
 const Delivery = () => {
   const [spin, setSpin] = useState(false);
+  
 
   useEffect(() => {
     setTimeout(() => setSpin(true), 5000);
@@ -30,20 +31,19 @@ const Delivery = () => {
                 </div>
                 <div className="pt-4 flex">
                   <div className="mx-auto -translate-x-6">
-                    <Button type="primary" danger>
+                   
+
+                    <Link to="/riderlist"> <Button type="primary" danger>
+                      Rider List
+                    </Button></Link>
+
+                    <Link to="/addrider"> <Button type="primary" danger>
                       Add Rider
-                    </Button>{" "}
-                    <Button type="primary" danger>
-                      All Riders
-                    </Button>{" "}
-                    <Button type="primary" danger>
+                    </Button></Link>
+                    <Link to="/orders"> <Button type="primary" danger>
                       Orders
-                    </Button>
-                    <a href="/Riderlist">
-                    <Button type="primary" danger>
-                      Orders
-                    </Button>
-                    </a>
+                    </Button></Link>
+                   
                   </div>
                 </div>
               </div>
