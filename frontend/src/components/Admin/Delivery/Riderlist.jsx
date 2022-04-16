@@ -2,7 +2,7 @@ import React, {useState,useEffect,Component} from 'react';
 import axios from 'axios';
 import { Button, Spin } from "antd";
 import { Link, NavLink } from "react-router-dom";
-import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
+import { DashboardFilled, DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
 const Riderlist = () => {
@@ -36,8 +36,10 @@ const Riderlist = () => {
 
   return (
     <div className= "container">
-
-     
+        
+     <div >
+       <h1 style={{color: "black" , fontSize: "30px", textAlign: "center", marginTop:"10px"}}>Rider List</h1>
+     </div>
       
     
 <center>
@@ -47,7 +49,7 @@ const Riderlist = () => {
               <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                   <table class="w-3/4 border-4 border-sky-700 text-center">
-                    <thead class="border-b-4 border-b-sky-700">
+                    <thead class="border-b-4 border-b-sky-700" >
                       <tr>
                         <th
                           scope="col"
@@ -98,13 +100,11 @@ const Riderlist = () => {
                               {value.nic}
                             </td>
                             <td class="text-2xl px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
-                            <div className="cursor-pointer">
-                                <NavLink
-                                  to={`/updaterider/${value._id}`}
-                                >
+                            <div className="cursor-pointer" >
+                                <NavLink to={`/updaterider/${value._id}`}>
                                   <EditTwoTone className="p-2 text-3xl" />
                                 </NavLink>
-                                <DeleteTwoTone
+                                <DeleteTwoTone 
                                   className="p-2 text-3xl"
                                   onClick={() => deleteData(value._id)}
                                 />
