@@ -4,6 +4,7 @@ import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { Spin } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import "antd/dist/antd.css";
+import moment from "moment";
 
 const Payment = () => {
   const [data, setData] = useState([]);
