@@ -1,7 +1,10 @@
 import React, { useState, useRef } from "react";
 import "./Login.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "antd/dist/antd.css";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import Log from "../../assets/Login/log.png";
 import Register from "../../assets/Login/register.svg";
@@ -19,6 +22,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const [available, setAvailable] = useState("");
   const [loading, setLoading] = useState(false); //additional
@@ -89,18 +93,32 @@ const Login = () => {
     }
   };
 
-  const showPassword = () => {
+  const showPassword = (method) => {
+    console.log(method);
     //show password method when checkbox is enabled
     var x = document.getElementById("password");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
+    var y = document.getElementById("password1");
+    if(method === "X"){
+      if(x.type === "password"){
+        x.type = "text";
+      }
+      else{
+        x.type = "password";
+      }
+    }
+    else{
+      if(y.type === "password"){
+        y.type = "text";
+      }
+      else{
+        y.type = "password";
+      }
     }
   };
 
   let refemail = null;
   let refpassword = null;
+  let refusername = null;
 
   const onKeyUp = (e, target) => {
     //references for the input fields
@@ -110,10 +128,49 @@ const Login = () => {
         case "email":
           refpassword.focus();
           break;
-        default:
+        case "password":
           refemail.focus();
           break;
+        default:
+          refusername.focus();
       }
+    }
+  };
+
+  const registerHandler = async (e) => {
+    //handler method for login
+    e.preventDefault();
+
+    setIsError(false); //additional
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const type = "User";
+      const { data } = await axios.post(
+        "/api/auth/register",
+        { username, email, password, type },
+        config
+      );
+
+      setTimeout(() => {
+        setLoading(true);
+        window.location.reload();
+      }, 5000);
+    } catch (error) {
+      setError(error.response.data.error);
+      setAvailable(error.response.data.available);
+      setLoading(false);
+      setIsError(true);
+      alert(error);
+      setTimeout(() => {
+        setError("");
+        setAvailable("");
+      }, 5000); //5s
     }
   };
 
@@ -164,7 +221,7 @@ const Login = () => {
             </div>
             <label className="float-left form-check-label">
               <div className="text-white">
-                <input type="checkbox" onClick={showPassword} /> Show Password{" "}
+                <input type="checkbox" onClick={() => showPassword("X")} /> Show Password{" "}
                 <i class="fa fa-rss" aria-hidden="true"></i>
               </div>
             </label>
@@ -176,9 +233,8 @@ const Login = () => {
             )}
             <input
               type="submit"
-              value="Login"
+              value={loading ? "Authenticating" : "SignIN"}
               className="btn solid"
-              disabled={loading}
             />
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
@@ -193,21 +249,79 @@ const Login = () => {
               </a>
             </div>
           </form>
-          <form action="#" className="sign-up-form">
+          <form onSubmit={registerHandler} className="sign-up-form">
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input
+                type="text"
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                placeholder="Username"
+                autoFocus
+                ref={(input) => {
+                  refusername = input;
+                }}
+                onKeyUp={(e) => onKeyUp(e, "username")}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                name="email"
+                label="Email"
+                autoComplete="email"
+                id="email"
+                placeholder="Email"
+                autoFocus
+                ref={(input) => {
+                  refemail = input;
+                }}
+                onKeyUp={(e) => onKeyUp(e, "email")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                name="password1"
+                label="Password"
+                autoComplete="password1"
+                placeholder="Password"
+                id="password1"
+                autoFocus
+                ref={(input) => {
+                  refpassword = input;
+                }}
+                onKeyUp={(e) => onKeyUp(e, "password")}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <input type="submit" className="btn" value="Sign up" />
+            <label className="float-left form-check-label">
+              <div className="text-white">
+                <input type="checkbox" onClick={() => showPassword("Y")} /> Show Password{" "}
+                <i class="fa fa-rss" aria-hidden="true"></i>
+              </div>
+            </label>
+            {isError && (
+              <small className="mt-3 d-inline-block text-red-600 text-xl">
+                Something went wrong. Please try again later.
+              </small>
+            )}
+            <br />
+            <input
+              type="submit"
+              value={loading ? "Registration in Progress..." : "SignUP"}
+              className="btn solid"
+            />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -230,8 +344,8 @@ const Login = () => {
             <h1 className=" text-4xl">Hello, Dear Customer</h1>
             <p>Fastest and Excellent Care for Your Computers</p>
             <div className=" pt-4">
-              <button onClick={SignUp} className="btn transparent">
-                Sign up
+              <button onClick={() => {SignUp(); setEmail(""); setPassword("");}} className="btn transparent">
+                SignUp
               </button>
             </div>
           </div>
@@ -242,7 +356,7 @@ const Login = () => {
             <h3>One of us ?</h3>
             <p>We can change your problematic computer into smooth working.</p>
             <div className=" pt-4">
-              <button onClick={SignIn} className="btn transparent">
+              <button onClick={() => {SignIn(); setUsername(""); setEmail(""); setPassword("");}} className="btn transparent">
                 Sign in
               </button>
             </div>
