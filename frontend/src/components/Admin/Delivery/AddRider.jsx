@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { Component } from 'react'
+import "./delivery.css";
 
 export default class AddRider extends Component {
-  
+
+    
+   
   constructor(props){
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
@@ -62,42 +65,53 @@ export default class AddRider extends Component {
 
   render() {
     return (
-      <div>
-        <h3 style={{}}>Add New Rider</h3>
+      <div >
+        <h3 style={{fontSize: "30px", textAlign: "center", textDecoration: "bold", marginTop: "10px"}}>Add New Rider</h3>
 
-        <form onSubmit={this.onSubmit}>
-          <div className='form-group'>
-            <label htmlFor="">Add Rider Name</label>
+        <form onSubmit={this.onSubmit} >
+         <div>
+         <div className='' >
+            <label htmlFor="">Add Rider Name :</label>
             <input type="text" className='form-control' 
+              placeholder='Jhone '
               value={this.state.name}
               onChange={this.onChangeName}
             />
+            <p>Rider name is requird</p>
           </div>
           <div className='form-group'>
-            <label htmlFor="">Add Rider Phone</label>
+            <label htmlFor="">Add Rider Phone :</label>
             <input type="text" className='form-control' 
+            placeholder='0771245785'
             value={this.state.phone}
             onChange={this.onChangePhone}
             />
+            <p>Rider Phone is requird</p>
           </div>
           <div className='form-group'>
-            <label htmlFor="">Add Rider Email</label>
+            <label htmlFor="">Add Rider Email :</label>
             <input type="email" className='form-control' 
+            placeholder='abc@gmail.com'
             value={this.state.email}
             onChange={this.onChangeEmail}
             />
+            <p>Email is requird</p>
           </div>
           <div className='form-group'>
-            <label htmlFor="">Add Rider NIC</label>
+            <label htmlFor="" >Add Rider NIC :</label>
             <input type="text" className='form-control' 
+            placeholder='998547854v'
             value={this.state.nic}
             onChange={this.onChangeNic}
             />
+            <p>NIC is requird</p>
           </div>
           <div className='form-group'>
             <input type="submit" value= "Add Rider" className='btn btn-primary' />
           </div>
 
+          </div> 
+          
         </form>
 
      

@@ -1,0 +1,28 @@
+label{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 12px;
+
+}
+
+h3 {
+    font-weight: bold;
+    padding: 10px;
+}
+
+:placeholder-shown {
+    font-size: medium;
+    font-style: italic;
+}
+
+
+.form-control {
+    width: 250%;
+    align-items: center;
+}
+
+p {
+    color: red;
+    font-style: italic;
+    font-size: medium;
+}
