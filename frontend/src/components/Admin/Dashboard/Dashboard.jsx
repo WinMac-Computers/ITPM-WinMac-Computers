@@ -26,7 +26,8 @@ import ReportProduct from "../Product/Report";
 
 //promotion components
 import PromotionDashboard from "../Promotion/Dashboard";
-import PromotionNavBar from "../Product/NavBar";
+import PromotionNavBar from "../Promotion/NavBar";
+import PromotionCreate from "../Promotion/Create";
 
 import Order from "../Order/Order";
 
@@ -57,6 +58,8 @@ const Dashboard = () => {
   const queryDisplayproduct = param.get("_product");
   const queryAddproduct = param.get("_product");
   const queryReportProduct = param.get("_product");
+
+  const queryCreatepromotion = param.get("_promotion");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -288,6 +291,7 @@ const Dashboard = () => {
           {queryDisplayproduct === "allproduct" && [<ProductNavBar/>,<Product/>]}
           {queryAddproduct === "addproduct" && [<ProductNavBar/>,<AddProduct/>]}
           {queryReportProduct === "report" && [<ProductNavBar/>,<ReportProduct/>]}
+          {queryCreatepromotion === "createpromotion" && [<PromotionNavBar/>, <PromotionCreate/>]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
