@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Spin, Tooltip, notification } from "antd";
-import TextArea from "antd/lib/input/TextArea";
+import { Form, Input, Button, Spin, Tooltip, notification, Select } from "antd";
+
 import {
-  BranchesOutlined,
-  DesktopOutlined,
   FileDoneOutlined,
   InfoCircleOutlined,
-  LockOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  UserAddOutlined,
-  UserOutlined,
+  DollarCircleOutlined,
 } from "@ant-design/icons";
 
 import axios from "axios";
+
+const { Option } = Select;
 
 const layout = {
   labelCol: {
@@ -32,18 +28,12 @@ const tailLayout = {
 
 const Create = () => {
   const [loader, setLoader] = useState(false);
-  const [nic, setNIC] = useState("");
-  const [empId, setEmpId] = useState("");
-  const [nameWithInitials, setNameWithInitials] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [designation, setDesignation] = useState("");
-  const [branch, setBranch] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const type = "user";
+  const [productNumber, setProductnumber] = useState("");
+  const [productName, setProductname] = useState("");
+  const [productCatergory, setProductcatergory] = useState("");
+  const [productPrice, setProductprice] = useState("");
+  const [qty, setQty] = useState("");
+  const [image, setImage] = useState("");
 
   const [loading, setLoading] = useState(false); //additional
   const [error, setError] = useState(false);
@@ -68,27 +58,15 @@ const Create = () => {
     try {
       await axios.post(
         //use axios API
-        "/api/auth/register",
+        "/product/create",
         {
-          empId,
-          nameWithInitials,
-          fullName,
-          nic,
-          address,
-          phoneNumber,
-          email,
-          designation,
-          branch,
-          username,
-          password,
-          type,
+          productNumber,
+          productName,
+          productCatergory,
+          productPrice,
+          qty,
+          image,
         },
-        config
-      );
-
-      await axios.post(
-        "/api/auth/notifyuser",
-        { email, username, password },
         config
       );
 
@@ -97,7 +75,7 @@ const Create = () => {
         setLoading(false);
         notification.info({
           message: `Notification`,
-          description: "Successfully Submitted the user details 😘",
+          description: "Successfully Added the product details 😘",
           placement,
         });
         form.resetFields();
@@ -127,264 +105,166 @@ const Create = () => {
           <Spin style={{ marginTop: "200px" }} />
         </center>
       ) : (
-        <Form
-          {...layout}
-          form={form}
-          name="control-hooks"
-          onFinish={() => employeeHandler("top")}
-        >
-          <center>
-            {error && <span style={{ color: "red" }}>{error}</span>}
-          </center>
-          <Form.Item
-            name="employee id"
-            label="Employee Id"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input
-              style={{ width: "150%" }}
-              placeholder="write your employee id"
-              prefix={<FileDoneOutlined className="site-form-item-icon" />}
-              suffix={
-                <Tooltip title="Enter employee Id ex: EMP001">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>
-              }
-              showCount
-              maxLength={10}
-              value={empId}
-              onChange={(e) => setEmpId(e.target.value)}
-            />
-          </Form.Item>
-          <Form.Item
-            name="initials"
-            label="Name with initials"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input
-              style={{ width: "200%" }}
-              placeholder="write your name"
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              suffix={
-                <Tooltip title="Please provide your name with initilas">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>
-              }
-              showCount
-              maxLength={100}
-              value={nameWithInitials}
-              onChange={(e) => setNameWithInitials(e.target.value)}
-            />
-          </Form.Item>
+          <div className=" mt-20 -translate-x-52">
+            <Form
+              {...layout}
+              form={form}
+              name="control-hooks"
+              onFinish={() => employeeHandler("top")}
+            >
+              <center>
+                {error && <span style={{ color: "red" }}>{error}</span>}
+              </center>
+              <Form.Item
+                name="product number"
+                label="Product Number"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input
+                  style={{ width: "260%" }}
+                  placeholder="Enter product Number"
+                  prefix={<FileDoneOutlined className="site-form-item-icon" />}
+                  suffix={
+                    <Tooltip title="Please Enter Product Number ex: PF90097">
+                      <InfoCircleOutlined
+                        style={{ color: "rgba(0,0,0,.45)" }}
+                      />
+                    </Tooltip>
+                  }
+                  value={productNumber}
+                  onChange={(e) => setProductnumber(e.target.value)}
+                />
+              </Form.Item>
+              <Form.Item
+                name="product name"
+                label="Product Name"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input
+                  style={{ width: "271%" }}
+                  placeholder="Enter product name"
+                  prefix={<FileDoneOutlined className="site-form-item-icon" />}
+                  suffix={
+                    <Tooltip title="Please Enter Product Name">
+                      <InfoCircleOutlined
+                        style={{ color: "rgba(0,0,0,.45)" }}
+                      />
+                    </Tooltip>
+                  }
+                  value={productName}
+                  onChange={(e) => setProductname(e.target.value)}
+                />
+              </Form.Item>
 
-          <Form.Item
-            name="full name"
-            label="Full Name"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input
-              style={{ width: "200%" }}
-              placeholder="write your full name"
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              suffix={
-                <Tooltip title="Please provide your full name">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>
-              }
-              showCount
-              maxLength={200}
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
-          </Form.Item>
+              <Form.Item
+                name="product catergory"
+                label="Product Catergory"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select Product Catregory"
+                  style={{ width: "284%" }}
+                  onChange={(e) => setProductcatergory(e.target.value)}
+                >
+                  <Option value="laptop">Laptop</Option>
+                  <Option value="monitor">Monitor</Option>
+                  <Option value="graphic">Graphic Card</Option>
+                  <Option value="memory">Memory</Option>
+                  <Option value="powersupply">Power Supply & UPS</Option>
+                  <Option value="storage">Storage Drive</Option>
+                  <Option value="coolingfan">Cooling Fan</Option>
+                  <Option value="pc">PC Case</Option>
+                  <Option value="keyboard">Keyboard & Mouse</Option>
+                  <Option value="headset">Headset & Speaker</Option>
+                </Select>
+              </Form.Item>
 
-          <Form.Item
-            name="nic"
-            label="NIC"
-            rules={[
-              {
-                required: true,
-              },
-              { min: 9, message: "NIC be minimum 10 characters." },
-              { max: 12 },
-            ]}
-          >
-            <Input
-              style={{ width: "200%" }}
-              placeholder="enter your NIC"
-              prefix={<FileDoneOutlined className="site-form-item-icon" />}
-              suffix={[
-                <span style={{ marginRight: "10px" }}>
-                  {nic.length === 9 && "V"}
-                </span>,
-                <Tooltip title="Enter employee National Identity Card ex: 991330534V">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>,
-              ]}
-              showCount
-              maxLength={12}
-              value={nic}
-              onChange={(e) => setNIC(e.target.value)}
-              type="number"
-            />
-          </Form.Item>
+              <Form.Item
+                name="product price"
+                label="Product Price"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input
+                  style={{ width: "276%" }}
+                  placeholder="Enter Product Price"
+                  prefix={
+                    <DollarCircleOutlined className="site-form-item-icon" />
+                  }
+                  suffix={[
+                    <Tooltip title="Please Enter Product Price">
+                      <InfoCircleOutlined
+                        style={{ color: "rgba(0,0,0,.45)" }}
+                      />
+                    </Tooltip>,
+                  ]}
+                  value={productPrice}
+                  onChange={(e) => setProductprice(e.target.value)}
+                  type="number"
+                />
+              </Form.Item>
 
-          <Form.Item
-            name="address"
-            label="Address"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <TextArea
-              style={{ width: "200%" }}
-              placeholder="enter your address"
-              showCount
-              maxLength={200}
-              required
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </Form.Item>
+              <Form.Item
+                name="qty"
+                label="Quantity"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input
+                  style={{ width: "301%" }}
+                  placeholder="Enter Product Quantity"
+                  prefix={<FileDoneOutlined className="site-form-item-icon" />}
+                  suffix={[
+                    <Tooltip title="Please Enter Product Quantity">
+                      <InfoCircleOutlined
+                        style={{ color: "rgba(0,0,0,.45)" }}
+                      />
+                    </Tooltip>,
+                  ]}
+                  value={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                  type="number"
+                />
+              </Form.Item>
 
-          <Form.Item
-            name="phone number"
-            label="Phone Number"
-            rules={[
-              { required: true, message: "Please input your Phone Number!" },
-              {
-                min: 10,
-                message: "Phone Number must be minimum 10 characters.",
-              },
-              { max: 10 },
-            ]}
-          >
-            <Input
-              style={{ width: "200%" }}
-              placeholder="Enter your phone number"
-              prefix={<PhoneOutlined className="site-form-item-icon" />}
-              suffix={
-                <Tooltip title="Enter your phone number ex: 0774258796">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>
-              }
-              showCount
-              maxLength={10}
-              type="number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[
-              {
-                required: true,
-              },
-              { type: "email" },
-              { max: 50 },
-            ]}
-          >
-            <Input
-              style={{ width: "200%" }}
-              placeholder="Enter your email"
-              prefix={<MailOutlined className="site-form-item-icon" />}
-              suffix={
-                <Tooltip title="Enter your email ex: admin@example.com">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>
-              }
-              showCount
-              maxLength={50}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="designation"
-            label="Designation"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input
-              style={{ width: "200%" }}
-              placeholder="Enter your designation"
-              prefix={<DesktopOutlined className="site-form-item-icon" />}
-              suffix={
-                <Tooltip title="Enter your designation ex: Associate Manager">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>
-              }
-              showCount
-              maxLength={50}
-              value={designation}
-              onChange={(e) => setDesignation(e.target.value)}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="branch"
-            label="Branch"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input
-              style={{ width: "200%" }}
-              placeholder="Enter your branch"
-              prefix={<BranchesOutlined className="site-form-item-icon" />}
-              suffix={
-                <Tooltip title="Enter your branch ex: Colombo">
-                  <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-                </Tooltip>
-              }
-              showCount
-              maxLength={20}
-              value={branch}
-              onChange={(e) => setBranch(e.target.value)}
-            />
-          </Form.Item>
-
-          <Form.Item {...tailLayout}>
-            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;
-            <Button type="primary" htmlType="submit">
-              {loading ? (
-                <>
-                  <Spin /> Planning in Progess...
-                </>
-              ) : (
-                "Submit"
-              )}
-            </Button>{" "}
-            &nbsp;&nbsp; &nbsp;&nbsp;
-            <Button htmlType="button" onClick={onReset}>
-              Reset
-            </Button>
-          </Form.Item>
-        </Form>
+              <Form.Item {...tailLayout}>
+                &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                <div className="flex ml-8">
+                  <Button type="primary" htmlType="submit">
+                    {loading ? (
+                      <>
+                        <Spin /> Submiting in Progess...
+                      </>
+                    ) : (
+                      "Submit"
+                    )}
+                  </Button>{" "}
+                  &nbsp;&nbsp;
+                  <Button htmlType="button" onClick={onReset}>
+                    Reset
+                  </Button>
+                </div>
+              </Form.Item>
+            </Form>
+          </div>
       )}
     </>
   );
