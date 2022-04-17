@@ -11,20 +11,17 @@ const Customer = new Schema({
   address: {
     type: String
   },
-  phoneNumber: {
-    type: Number
+  phone: {
+    type: String
   },
   email: {
     type: String,
-  },
-  password: {
-    type: Number
   },
   image:{
       type: String
   },
   gender:{
-    type: Boolean
+    type: String
   }
 
 });

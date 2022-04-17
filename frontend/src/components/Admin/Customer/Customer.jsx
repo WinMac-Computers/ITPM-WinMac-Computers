@@ -9,7 +9,21 @@ import img4 from "../assets/Customer/4.jpg";
 
 const Customer = () => {
   return (
+
+    <div>
+      <Link to="/createprofile">
+        <Button>Create</Button>
+      </Link>
+      <Link to="/displayprofile">
+        <Button>Display Profile</Button>
+      </Link>
+      <Link to="/listview">
+        <Button>Table View</Button>
+      </Link>
+      {" "}
+
     <div className="mt-4">
+
       <Carousel autoplay>
         <div>
           <img src={img1} />
