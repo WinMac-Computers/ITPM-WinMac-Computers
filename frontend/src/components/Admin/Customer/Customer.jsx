@@ -15,7 +15,14 @@ const Customer = () => {
     <div>
       <Link to="/createprofile">
         <Button>Create</Button>
-      </Link>{" "}
+      </Link>
+      <Link to="/displayprofile">
+        <Button>Display Profile</Button>
+      </Link>
+      <Link to="/listview">
+        <Button>Table View</Button>
+      </Link>
+      {" "}
       <Carousel autoplay>
         <div>
           <img src={img1} />

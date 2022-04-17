@@ -1,325 +1,144 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify"; //for toast messages
-import {Form,Input,InputNumber,Cascader,Select,Row,Col,Checkbox,Button,AutoComplete,} from "antd";
-import { useParams } from "react-router-dom";
-import { Upload } from "antd";
-import ImgCrop from "antd-img-crop";
+import "./CreateProfile.css";
 
-const { Option } = Select;
+const Form = () => {
+  // a local state to store the currently selected file.
+  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [age, setage] = useState("");
+  const [address, setaddress] = useState("");
+  const [phone, setphone] = useState("");
+  const [gender, setgender] = useState("");
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    formData.append("email", email);
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("phone", phone);
+    formData.append("age", age);
+    formData.append("gender", gender);
 
-const CreateProfile = () => {
-
-    const [name, setname] = useState("");
-    const [age, setage] = useState("");
-    const [address, setaddress] = useState("");
-    const [phoneNumber, setphoneNumber] = useState("");
-    const [email, setemail] = useState("");
-    const [password, setpassword] = useState("");
-    const [image, setimage] = useState("");
-    const [gender, setgender] = useState("");
-    const [loading, setLoading] = useState(false); //additional
-
-    const { id } = useParams();
-
-    useEffect(() => {
-      //component mount
-      (async () => {
-        await fetch(`/customer/get/${id}`)
-          .then((res) => res.json())
-          .then((json) => {
-            setphoneNumber(json.phoneNumber);
-            setemail(json.email);
-          })
-          .catch((err) => null);
-      })();
-    }, []);
-
-    const createHandler = async (e) => {
-        // create handler for saving data to the db
-        e.preventDefault();
-
-        setLoading(true);
-
-        const config = {
-          //headers
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-    
-        try {
-          await axios.post(
-            //use axios API
-            "/customer/create",
-            {
-                name,
-                age,
-                address,
-                phoneNumber,
-                email,
-                password,
-                image,
-                gender,
-            },
-            config
-          );
-    
-          setTimeout(() => {
-            //set a time out
-            setLoading(false);
-            toast("Success!  😘");
-            setname("");
-            setage("");
-            setaddress("");
-            setphoneNumber("");
-            setemail("");
-            setpassword("");
-            setimage("");
-            setgender("");
-          }, 5000); //5seconds timeout
-        } catch (error) {
-          alert(error?.response?.data?.error);
-          setname("");
-          setage("");
-          setaddress("");
-          setphoneNumber("");
-          setemail("");
-          setpassword("");
-          setimage("");
-          setgender("");
-          setLoading(false);
-        }
-      };
-    
-
-    const onReset = () => {
-        form.resetFields();
-      };
-
-  const [fileList, setFileList] = useState([
-  
-  ]);
-
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
-
-  const onPreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
+    try {
+      const response = await axios({
+        method: "post",
+        url: "/customer/create",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
       });
+    } catch (error) {
+      console.log(error);
     }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow.document.write(image.outerHTML);
   };
 
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const handleFileSelect = async (event) => {
+    setSelectedFile(event.target.files[0]);
+    console.log(event.target.files[0]);
   };
-
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="94">+94</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-
- 
 
   return (
-    <div  className=" bg-gray-300 shadow-2xl w-1/2 h-1/2 ml-96 mt-20">
-      {" "}
+    <div className=" bg-zinc-400 shadow-2xl w-3/4 h-1/2 ml-60 mt-60 text-left">
       <div className=" mt-10">
-      <Form
-        {...formItemLayout}
-        form={form}
-        name="register"
-        onFinish={onFinish}
-        initialValues={{
-          residence: ["zhejiang", "hangzhou", "xihu"],
-          prefix: "86",
-        }}
-        scrollToFirstError
-      >
-        <Form.Item
-          name="email"
-          label="E-mail"
-          rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="nickname"
-          label="Name"
-          tooltip="What do you want others to call you?"
-          rules={[
-            {
-              required: true,
-              message: "Please input your name!",
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="address"
-          label="Address"
-          tooltip="Whats your address?"
-          rules={[
-            {
-              required: true,
-              message: "Please input your address!",
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="number"
-          label="Age"
-          tooltip="Enter your age"
-          rules={[
-            {
-              required: true,
-              message: "Please input your age!",
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="phone"
-          label="Phone Number"
-          rules={[
-            {
-              required: true,
-              message: "Please input your phone number!",
-            },
-          ]}
-        >
-          <Input
-            addonBefore={prefixSelector}
-            style={{
-              width: "100%",
-            }}
-          />
-        </Form.Item>
-        <Form.Item
-          name="gender"
-          label="Gender"
-          rules={[
-            {
-              required: true,
-              message: "Please select gender!",
-            },
-          ]}
-        >
-          <Select placeholder="select your gender">
-            <Option value="male">Male</Option>
-            <Option value="female">Female</Option>
-          </Select>
-        </Form.Item>
-        <center>
-          <ImgCrop rotate>
-            <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              listType="picture-card"
-              fileList={fileList}
-              onChange={onChange}
-              onPreview={onPreview}
-            >
-              {fileList.length < 5 && "+ Upload"}
-            </Upload>
-          </ImgCrop>
-        </center>
+        <form onSubmit={handleSubmit}>
+          <br/>
+          <table style={{width:"100%"}}>
+            <tr>
+              <td>
+                <label>Email :</label>{" "}&nbsp;&nbsp;&nbsp;&nbsp;
+                <input
+                  type="email"
+                  style={{ background: "gray", width: "70%", height: "50%" }}
+                  name="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </td>
+              <td>
+                <label>Name :</label>{" "}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input
+                  type="text"
+                  style={{ background: "gray", width: "70%", height: "50%" }}
+                  name="name"
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Address :</label>{" "}
+                <input
+                  type="text"
+                  style={{ background: "gray", width: "70%", height: "50%" }}
+                  name="address"
+                  onChange={(e) => setaddress(e.target.value)}
+                  required
+                />
+              </td>
+              <td>
+                {" "}
+                <label>Phone Number :</label>{" "}
+                <input
+                  type="phone"
+                  style={{ background: "gray", width: "70%", height: "50%" }}
+                  name="phone"
+                  onChange={(e) => setphone(e.target.value)}
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {" "}
+                <label>Age :</label>{" "}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input
+                  type="number"
+                  style={{ background: "gray", width: "70%", height: "50%" }}
+                  name="age"
+                  onChange={(e) => setage(e.target.value)}
+                  required
+                />
+              </td>
+              <td>
+                {" "}
+                <label for="gender" className="form-label">
+                  Gender
+                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input
+                  style={{ background: "gray", width: "70%", height: "50%" }}
+                  type="text"
+                  placeholder="Enter the gender"
+                  className="form-control"
+                  name="gender"
+                  onChange={(e) => setgender(e.target.value)}
+                  required
+                  pattern="[A-Za-z]+"
+                  title="Gender cannot contain any numbers or special characters"
+                />
+              </td>
+            </tr>
+          </table>{" "}
+          <br />
+          <div className="ml-20">
+            <input
+              type="file"
+              onChange={handleFileSelect}
+              name="image"
+              required
+            />
+          </div>
+          <br />
+          <input type="submit" value={"submit"} />
 
-        <Form.Item
-          name="agreement"
-          valuePropName="checked"
-          rules={[
-            {
-              validator: (_, value) =>
-                value
-                  ? Promise.resolve()
-                  : Promise.reject(new Error("Should accept agreement")),
-            },
-          ]}
-          {...tailFormItemLayout}
-        >
-          <Checkbox>
-            I have read the <a href="">agreement</a>
-          </Checkbox>
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            Create
-          </Button>
-          <Button htmlType="button" onClick={onReset}>
-          Reset
-        </Button>
-        </Form.Item>
-      </Form>
+          
+        </form>
       </div>
     </div>
   );
 };
 
-export default CreateProfile;
+export default Form;

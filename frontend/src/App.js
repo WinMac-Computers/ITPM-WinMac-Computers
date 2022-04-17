@@ -12,6 +12,9 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import CreateProfile from "./components/Admin/Customer/CreateProfile";
+import DisplayProfile from "./components/Admin/Customer/DisplayProfile";
+import Complaint from "./components/Admin/Customer/Complaint";
+import Edit from "./components/Admin/Customer/ListView";
 
 const App = () => {
   return (
@@ -26,12 +29,22 @@ const App = () => {
 
           {/* Admin */}
           <Route path="/createprofile" element={<CreateProfile/>} />
+          <Route path="/displayprofile" element={<DisplayProfile/>}/>
+          <Route path="/complaint" element={<Complaint/>}/>
 
           <Route
             path="/admin-dashboard/:username"
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="/listview"
+            element={
+              <PrivateRoute>
+                <Edit />
               </PrivateRoute>
             }
           />
