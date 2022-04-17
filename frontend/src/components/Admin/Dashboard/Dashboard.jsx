@@ -44,7 +44,6 @@ import Logo from "../../../assets/Logo/winmaclogo.png";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
-
   const [collapsed, setCollapsed] = useState(false);
   const history = useNavigate();
   const location = useLocation();
@@ -59,8 +58,8 @@ const Dashboard = () => {
   //Payment
   const queryPayment = param.get("_optPayment");
   const queryDisplaypayment = param.get("_payment");
-  const queryEditpayment = param.get("_payment");
   const queryReportPayment = param.get("_payment");
+  const queryPaymentEdit = param.get("edit");
 
   const queryOrder = param.get("_optOrder");
   const queryDelivery = param.get("_optDelivery");
@@ -291,20 +290,38 @@ const Dashboard = () => {
             !queryOrder &&
             !queryDelivery} */}
           {queryCustomer === "customer" && <Customer />}
-          {queryProduct === "product" && [<ProductNavBar/>,<ProductDashboard />] }
-          {queryPromotion === "promotion" && [<PromotionNavBar/>,<PromotionDashboard />]}
+          {queryProduct === "product" && [
+            <ProductNavBar />,
+            <ProductDashboard />,
+          ]}
+          {queryPromotion === "promotion" && [
+            <PromotionNavBar />,
+            <PromotionDashboard />,
+          ]}
 
           {/* Payment */}
-          {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />] }
-          {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />] }
-          {queryEditpayment === "editpayment" && [<PayNavBar />, <EditPayment />] }
-          {queryReportPayment === "paymentreport" && [<PayNavBar />, <ReportPayment />] }
-          
+          {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
+          {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />]}
+          {queryPaymentEdit === "true" && [<PayNavBar />, <EditPayment />]}
+          {queryReportPayment === "paymentreport" && [
+            <PayNavBar />,
+            <ReportPayment />,
+          ]}
+
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
-          {queryDisplayproduct === "allproduct" && [<ProductNavBar/>,<Product/>]}
-          {queryAddproduct === "addproduct" && [<ProductNavBar/>,<AddProduct/>]}
-          {queryReportProduct === "report" && [<ProductNavBar/>,<ReportProduct/>]}
+          {queryDisplayproduct === "allproduct" && [
+            <ProductNavBar />,
+            <Product />,
+          ]}
+          {queryAddproduct === "addproduct" && [
+            <ProductNavBar />,
+            <AddProduct />,
+          ]}
+          {queryReportProduct === "report" && [
+            <ProductNavBar />,
+            <ReportProduct />,
+          ]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
