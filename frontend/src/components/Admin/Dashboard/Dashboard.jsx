@@ -14,11 +14,29 @@ import {
 
 import "antd/dist/antd.css";
 import "./Dashboard.css";
+
+//payment components
+import PaymentDashboard from "../Payment/PayDashboard";
+import PayNavBar from "../Payment/NavBar";
 import Payment from "../Payment/Payment";
+import EditPayment from "../Payment/Edit";
+import ReportPayment from "../Payment/Report";
+
+//product components
+import ProductDashboard from "../Product/Dashboard";
+import ProductNavBar from "../Product/NavBar";
 import Product from "../Product/Product";
-import Promotion from "../Promotion/Promotion";
+import AddProduct from "../Product/Create";
+import ReportProduct from "../Product/Report";
+
+//promotion components
+import PromotionDashboard from "../Promotion/Dashboard";
+import PromotionNavBar from "../Product/NavBar";
+
 import Order from "../Order/Order";
+
 import Customer from "../Customer/Customer";
+
 import Delivery from "../Delivery/Delivery";
 
 import Logo from "../../../assets/Logo/winmaclogo.png";
@@ -26,17 +44,30 @@ import Logo from "../../../assets/Logo/winmaclogo.png";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
+
   const [collapsed, setCollapsed] = useState(false);
   const history = useNavigate();
   const location = useLocation();
   const search = window.location.search;
+
   const param = new URLSearchParams(search);
+
   const queryCustomer = param.get("_optCustomer");
   const queryProduct = param.get("_optProduct");
   const queryPromotion = param.get("_optPromotion");
+
+  //Payment
   const queryPayment = param.get("_optPayment");
+  const queryDisplaypayment = param.get("_payment");
+  const queryEditpayment = param.get("_payment");
+  const queryReportPayment = param.get("_payment");
+
   const queryOrder = param.get("_optOrder");
   const queryDelivery = param.get("_optDelivery");
+
+  const queryDisplayproduct = param.get("_product");
+  const queryAddproduct = param.get("_product");
+  const queryReportProduct = param.get("_product");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -251,20 +282,29 @@ const Dashboard = () => {
             <Breadcrumb.Item>{greet}</Breadcrumb.Item>
             <Breadcrumb.Item>Admin</Breadcrumb.Item>
           </Breadcrumb>
-          {location.pathname ===
+          {/* {location.pathname ===
             `/admin-dashboard/${localStorage.getItem("username")}` &&
             !queryCustomer &&
             !queryProduct &&
             !queryPromotion &&
             !queryPayment &&
             !queryOrder &&
-            !queryDelivery}
+            !queryDelivery} */}
           {queryCustomer === "customer" && <Customer />}
-          {queryProduct === "product" && <Product />}
-          {queryPromotion === "promotion" && <Promotion />}
-          {queryPayment === "payment" && <Payment />}
+          {queryProduct === "product" && [<ProductNavBar/>,<ProductDashboard />] }
+          {queryPromotion === "promotion" && [<PromotionNavBar/>,<PromotionDashboard />]}
+
+          {/* Payment */}
+          {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />] }
+          {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />] }
+          {queryEditpayment === "editpayment" && [<PayNavBar />, <EditPayment />] }
+          {queryReportPayment === "paymentreport" && [<PayNavBar />, <ReportPayment />] }
+          
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
+          {queryDisplayproduct === "allproduct" && [<ProductNavBar/>,<Product/>]}
+          {queryAddproduct === "addproduct" && [<ProductNavBar/>,<AddProduct/>]}
+          {queryReportProduct === "report" && [<ProductNavBar/>,<ReportProduct/>]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
