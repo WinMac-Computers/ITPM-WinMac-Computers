@@ -16,15 +16,21 @@ const NavBar = () => {
               history(
                 `/admin-dashboard/${localStorage.getItem(
                   "username"
-                )}?_optProduct=product`
+                )}?_optProduct=promotion`
               )
             }
           />
         </div>
         <div className="pt-4 flex">
           <div className="mx-auto -translate-x-6">
-            <Button type="primary" danger>
-              Add Product
+            <Button type="primary" danger onClick={() =>
+                history(
+                  `/admin-dashboard/${localStorage.getItem(
+                    "username"
+                  )}?_promotion=createpromotion`
+                )
+              }>
+              Create
             </Button>{" "}
             <Button
               type="primary"
@@ -37,10 +43,10 @@ const NavBar = () => {
                 )
               }
             >
-              All Products
+              Resolved
             </Button>{" "}
             <Button type="primary" danger>
-              Report
+              Outdated
             </Button>
           </div>
         </div>

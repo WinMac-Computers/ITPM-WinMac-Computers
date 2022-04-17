@@ -1,46 +1,66 @@
 const router = require("express").Router();
 const Customer = require("../models/Customer");
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+let path = require("path");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./frontend/public/images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+let upload = multer({ storage, fileFilter });
 
 //route for creating database insertion
-router.route("/create").post(async (req, res) => {
-  const {
-    name,
-    address,
-    email,
-    image,
-  } = req.body;
+router.route("/create").post(upload.single("image"), async (req, res) => {
+  
+
+  const { name, address, email, gender } = req.body;
 
   const age = Number(req.body.age);
 
-  const phoneNumber = Number(req.body.phoneNumber);
+  const phone = req.body.phone;
+  const image = req.file.filename;
 
-  const password = Number(req.body.Password);
-  const gender = Boolean(req.body.gender);
+  console.log(req.body);
 
   // create a new object using database schema
   const newCustomer = new Customer({
     name,
     age,
     address,
-    phoneNumber,
+    phone,
     email,
-    password,
     image,
     gender,
   });
 
   // check the availability of saving data
   const isAvailable = await Customer.findOne({
-    phoneNumber: { $regex: new RegExp(phoneNumber, "i") },
+    name: { $regex: new RegExp(name, "i") },
     email: email,
   });
 
   if (isAvailable) {
     return res
       .status(401)
-      .json({ error: "The customer had created a profile!😀" });
+      .json({ error: "The customer profile! already exists 😒😒😒" });
   }
 
+  
   await newCustomer
     .save()
     .then(() => res.status(200).json({ success: true }))
@@ -78,32 +98,21 @@ router.route("/delete/:id").delete(async (req, res) => {
 router.route("/update/:id").put(async (req, res) => {
   //backend route for updating relavant data and passing back
   const { id } = req.params;
-  const {
-    name,
-    age,
-    address,
-    phoneNumber,
-    email,
-    Password,
-    image,
-    gender,
-  } = req.body;
+  const { name, age, address, phone, email, image, gender } =
+    req.body;
 
   //find the document by and update the relavant data
   await Customer.findByIdAndUpdate(id, {
     name,
     age,
     address,
-    phoneNumber,
+    phone,
     email,
-    Password,
     image,
     gender,
   })
     .then(() => res.json({ success: true }))
     .catch((error) => res.json({ success: false, error: error }));
 });
-
-
 
 module.exports = router;
