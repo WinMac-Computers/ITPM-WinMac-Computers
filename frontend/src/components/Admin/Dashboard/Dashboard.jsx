@@ -33,6 +33,13 @@ import ReportProduct from "../Product/Report";
 import PromotionDashboard from "../Promotion/Dashboard";
 import PromotionNavBar from "../Product/NavBar";
 
+//Customer Components
+import CustomerNavBar from "../Customer/NavBar";
+import CreateProfile from "../Customer/CreateProfile";
+import DisplayProfile from "../Customer/DisplayProfile";
+import Complaint from "../Customer/Complaint";
+import ListView from "../Customer/ListView";
+
 import Order from "../Order/Order";
 
 import Customer from "../Customer/Customer";
@@ -44,7 +51,6 @@ import Logo from "../../../assets/Logo/winmaclogo.png";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
-
   const [collapsed, setCollapsed] = useState(false);
   const history = useNavigate();
   const location = useLocation();
@@ -68,6 +74,11 @@ const Dashboard = () => {
   const queryDisplayproduct = param.get("_product");
   const queryAddproduct = param.get("_product");
   const queryReportProduct = param.get("_product");
+
+  const queryCustomerCreate = param.get("createProfile");
+  const queryCustomerDisplay = param.get("displayProfile");
+  const queryCustomerComplaint = param.get("complaint");
+  const queryCustomerList = param.get("listView");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -291,20 +302,56 @@ const Dashboard = () => {
             !queryOrder &&
             !queryDelivery} */}
           {queryCustomer === "customer" && <Customer />}
-          {queryProduct === "product" && [<ProductNavBar/>,<ProductDashboard />] }
-          {queryPromotion === "promotion" && [<PromotionNavBar/>,<PromotionDashboard />]}
+          {queryProduct === "product" && [
+            <ProductNavBar />,
+            <ProductDashboard />,
+          ]}
+          {queryPromotion === "promotion" && [
+            <PromotionNavBar />,
+            <PromotionDashboard />,
+          ]}
 
           {/* Payment */}
-          {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />] }
-          {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />] }
-          {queryEditpayment === "editpayment" && [<PayNavBar />, <EditPayment />] }
-          {queryReportPayment === "paymentreport" && [<PayNavBar />, <ReportPayment />] }
-          
+          {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
+          {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />]}
+          {queryEditpayment === "editpayment" && [
+            <PayNavBar />,
+            <EditPayment />,
+          ]}
+          {queryReportPayment === "paymentreport" && [
+            <PayNavBar />,
+            <ReportPayment />,
+          ]}
+
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
-          {queryDisplayproduct === "allproduct" && [<ProductNavBar/>,<Product/>]}
-          {queryAddproduct === "addproduct" && [<ProductNavBar/>,<AddProduct/>]}
-          {queryReportProduct === "report" && [<ProductNavBar/>,<ReportProduct/>]}
+          {queryDisplayproduct === "allproduct" && [
+            <ProductNavBar />,
+            <Product />,
+          ]}
+          {queryAddproduct === "addproduct" && [
+            <ProductNavBar />,
+            <AddProduct />,
+          ]}
+          {queryReportProduct === "report" && [
+            <ProductNavBar />,
+            <ReportProduct />,
+          ]}
+
+          {/*Customer */}
+          {queryCustomerCreate === "true" && [
+            <CustomerNavBar />,
+            <CreateProfile />,
+          ]}
+          {queryCustomerDisplay === "true" && [
+            <CustomerNavBar />,
+            <DisplayProfile />,
+          ]}
+          {queryCustomerComplaint === "true" && [
+            <CustomerNavBar />,
+            <Complaint />,
+          ]}
+          {queryCustomerList === "true" && [<CustomerNavBar />, <ListView />]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
