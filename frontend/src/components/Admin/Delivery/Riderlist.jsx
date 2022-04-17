@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Button, Spin } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import { DashboardFilled, DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
+import "./delivery.css";
 import "antd/dist/antd.css";
+
 
 const Riderlist = () => {
 
