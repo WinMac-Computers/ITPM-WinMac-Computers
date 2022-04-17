@@ -51,14 +51,14 @@ const App = () => {
               </PrivateRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/admin-dashboard/edit/:id"
             element={
               <PrivateRoute>
                 <Payedit />
               </PrivateRoute>
             }
-          />
+          /> */}
 
         </Routes>
       </Router>
