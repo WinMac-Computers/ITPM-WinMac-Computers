@@ -313,6 +313,7 @@ const Dashboard = () => {
 
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
+
           {queryDisplayproduct === "allproduct" && [
             <ProductNavBar />,
             <Product />,
@@ -325,10 +326,10 @@ const Dashboard = () => {
             <ProductNavBar />,
             <ReportProduct />,
           ]}
-          {queryDisplayproduct === "allproduct" && [<ProductNavBar/>,<Product/>]}
-          {queryAddproduct === "addproduct" && [<ProductNavBar/>,<AddProduct/>]}
-          {queryReportProduct === "report" && [<ProductNavBar/>,<ReportProduct/>]}
-          {queryCreatepromotion === "createpromotion" && [<PromotionNavBar/>, <PromotionCreate/>]}
+          {queryCreatepromotion === "createpromotion" && [
+            <PromotionNavBar />,
+            <PromotionCreate />,
+          ]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
