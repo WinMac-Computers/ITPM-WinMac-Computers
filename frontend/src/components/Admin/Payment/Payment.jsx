@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { Spin, notification } from "antd";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import moment from "moment";
-
 const Payment = () => {
   const [data, setData] = useState([]);
   const [spin, setSpin] = useState(false);
@@ -33,6 +32,8 @@ const Payment = () => {
         .catch((error) => alert(error));
     }
   };
+
+  const history = useNavigate();
 
   return (
     <div>
@@ -102,11 +103,17 @@ const Payment = () => {
                             </td>
                             <td class="text-2xl px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
                               <div className="cursor-pointer">
-                                <NavLink
-                                  to={`/admin-dashboard/edit/${value._id}`}
-                                >
-                                  <EditTwoTone className="p-2 text-3xl" />
-                                </NavLink>
+                                <EditTwoTone
+                                  className="p-2 text-3xl"
+                                  onClick={() =>
+                                    history(
+                                      `/admin-dashboard/${localStorage.getItem(
+                                        "username"
+                                      )}?edit=true&id=${value._id}`
+                                    )
+                                  }
+                                />
+
                                 <DeleteTwoTone
                                   className="p-2 text-3xl"
                                   onClick={() => deleteData(value._id)}
