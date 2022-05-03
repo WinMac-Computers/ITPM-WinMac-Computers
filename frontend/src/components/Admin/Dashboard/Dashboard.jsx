@@ -34,6 +34,13 @@ import PromotionDashboard from "../Promotion/Dashboard";
 import PromotionNavBar from "../Promotion/NavBar";
 import PromotionCreate from "../Promotion/Create";
 
+//Customer Components
+import CustomerNavBar from "../Customer/NavBar";
+import CreateProfile from "../Customer/CreateProfile";
+import DisplayProfile from "../Customer/DisplayProfile";
+import Complaint from "../Customer/Complaint";
+import ListView from "../Customer/ListView";
+
 import Order from "../Order/Order";
 
 import Customer from "../Customer/Customer";
@@ -69,7 +76,14 @@ const Dashboard = () => {
   const queryAddproduct = param.get("_product");
   const queryReportProduct = param.get("_product");
 
+
+  const queryCustomerCreate = param.get("createProfile");
+  const queryCustomerDisplay = param.get("displayProfile");
+  const queryCustomerComplaint = param.get("complaint");
+  const queryCustomerList = param.get("listView");
+
   const queryCreatepromotion = param.get("_promotion");
+
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -305,7 +319,14 @@ const Dashboard = () => {
           {/* Payment */}
           {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
           {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />]}
+
+          {queryEditpayment === "editpayment" && [
+            <PayNavBar />,
+            <EditPayment />,
+          ]}
+
           {queryPaymentEdit === "true" && [<PayNavBar />, <EditPayment />]}
+
           {queryReportPayment === "paymentreport" && [
             <PayNavBar />,
             <ReportPayment />,
@@ -313,6 +334,9 @@ const Dashboard = () => {
 
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
+
+
+
 
           {queryDisplayproduct === "allproduct" && [
             <ProductNavBar />,
@@ -326,10 +350,28 @@ const Dashboard = () => {
             <ProductNavBar />,
             <ReportProduct />,
           ]}
+
+
+          {/*Customer */}
+          {queryCustomerCreate === "true" && [
+            <CustomerNavBar />,
+            <CreateProfile />,
+          ]}
+          {queryCustomerDisplay === "true" && [
+            <CustomerNavBar />,
+            <DisplayProfile />,
+          ]}
+          {queryCustomerComplaint === "true" && [
+            <CustomerNavBar />,
+            <Complaint />,
+          ]}
+          {queryCustomerList === "true" && [<CustomerNavBar />, <ListView />]}
+
           {queryCreatepromotion === "createpromotion" && [
             <PromotionNavBar />,
             <PromotionCreate />,
           ]}
+
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
