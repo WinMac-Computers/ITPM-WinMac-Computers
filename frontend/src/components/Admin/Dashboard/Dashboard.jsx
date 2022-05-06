@@ -323,7 +323,7 @@ const Dashboard = () => {
           {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
           {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />]}
 
-          {queryEditpayment === "editpayment" && [
+          {queryPaymentEdit === "editpayment" && [
             <PayNavBar />,
             <EditPayment />,
           ]}
