@@ -143,7 +143,7 @@ const Form = () => {
                         name="comment"
                         onChange={(e) => setcomment(e.target.value)}
                         required
-                        placeholder="Enter Age"
+                        placeholder="Enter Comment"
                       />
                     </td>
                     
