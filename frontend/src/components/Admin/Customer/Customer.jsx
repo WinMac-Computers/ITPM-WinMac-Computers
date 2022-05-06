@@ -7,6 +7,7 @@ import img3 from "../assets/Customer/3.jpg";
 import img4 from "../assets/Customer/4.jpg";
 import NavBar from "./NavBar";
 
+
 const Customer = () => {
   const [spin, setSpin] = useState(false);
 

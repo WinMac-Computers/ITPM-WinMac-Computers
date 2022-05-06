@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ListView = () => {
   const [listOfUsers, setListOfUsers] = useState([]);
@@ -18,6 +19,8 @@ const ListView = () => {
       }, 3000);
     });
   };
+
+  const history = useNavigate()
 
   return (
     <>
@@ -93,7 +96,7 @@ const ListView = () => {
                             <div class="flex items-center"></div>
                           </td>
                           <td class="p-4 whitespace-nowrap space-x-2 ">
-                            <button
+                            <button onClick={() => history(`/admin-dashboard/customermanager?EditProfile=true&id=${user._id}`)}
                               type="button"
                               data-modal-toggle="user-modal"
                               class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center"

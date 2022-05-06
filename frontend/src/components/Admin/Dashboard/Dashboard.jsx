@@ -38,8 +38,9 @@ import PromotionCreate from "../Promotion/Create";
 import CustomerNavBar from "../Customer/NavBar";
 import CreateProfile from "../Customer/CreateProfile";
 import DisplayProfile from "../Customer/DisplayProfile";
-import Complaint from "../Customer/Complaint";
+import Complaint from "../Complaint/Complaint";
 import ListView from "../Customer/ListView";
+import EditProfile from "../Customer/EditProfile";
 
 import Order from "../Order/Order";
 
@@ -76,11 +77,13 @@ const Dashboard = () => {
   const queryAddproduct = param.get("_product");
   const queryReportProduct = param.get("_product");
 
+  //customer
 
   const queryCustomerCreate = param.get("createProfile");
   const queryCustomerDisplay = param.get("displayProfile");
-  const queryCustomerComplaint = param.get("complaint");
+  const queryComplaint = param.get("complaint");
   const queryCustomerList = param.get("listView");
+  const queryEditProfile = param.get("EditProfile")
 
   const queryCreatepromotion = param.get("_promotion");
 
@@ -277,7 +280,7 @@ const Dashboard = () => {
           style={{ padding: 0, textAlign: "center" }}
         >
           <h1 id="header" style={{ fontFamily: "serif", fontSize: "20px" }}>
-            {queryCustomer === "customer"
+            {queryCustomer === "customer" || queryCustomerCreate === "true" || queryCustomerDisplay === "true" || queryComplaint === "true" || queryEditProfile === "true"
               ? "Customer Management"
               : queryProduct === "product"
               ? "Product Management"
@@ -320,7 +323,7 @@ const Dashboard = () => {
           {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
           {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />]}
 
-          {queryEditpayment === "editpayment" && [
+          {queryPaymentEdit === "editpayment" && [
             <PayNavBar />,
             <EditPayment />,
           ]}
@@ -361,9 +364,13 @@ const Dashboard = () => {
             <CustomerNavBar />,
             <DisplayProfile />,
           ]}
-          {queryCustomerComplaint === "true" && [
+          {queryComplaint === "true" && [
             <CustomerNavBar />,
             <Complaint />,
+          ]}
+          {queryEditProfile === "true" && [
+            <CustomerNavBar />,
+            <EditProfile />,
           ]}
           {queryCustomerList === "true" && [<CustomerNavBar />, <ListView />]}
 
