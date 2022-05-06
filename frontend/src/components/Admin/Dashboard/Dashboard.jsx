@@ -31,7 +31,8 @@ import ReportProduct from "../Product/Report";
 
 //promotion components
 import PromotionDashboard from "../Promotion/Dashboard";
-import PromotionNavBar from "../Product/NavBar";
+import PromotionNavBar from "../Promotion/NavBar";
+import PromotionCreate from "../Promotion/Create";
 
 //Customer Components
 import CustomerNavBar from "../Customer/NavBar";
@@ -66,8 +67,8 @@ const Dashboard = () => {
   //Payment
   const queryPayment = param.get("_optPayment");
   const queryDisplaypayment = param.get("_payment");
-  const queryEditpayment = param.get("_payment");
   const queryReportPayment = param.get("_payment");
+  const queryPaymentEdit = param.get("edit");
 
   const queryOrder = param.get("_optOrder");
   const queryDelivery = param.get("_optDelivery");
@@ -77,11 +78,15 @@ const Dashboard = () => {
   const queryReportProduct = param.get("_product");
 
   //customer
+
   const queryCustomerCreate = param.get("createProfile");
   const queryCustomerDisplay = param.get("displayProfile");
   const queryComplaint = param.get("complaint");
   const queryCustomerList = param.get("listView");
   const queryEditProfile = param.get("EditProfile")
+
+  const queryCreatepromotion = param.get("_promotion");
+
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -317,10 +322,14 @@ const Dashboard = () => {
           {/* Payment */}
           {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
           {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />]}
+
           {queryEditpayment === "editpayment" && [
             <PayNavBar />,
             <EditPayment />,
           ]}
+
+          {queryPaymentEdit === "true" && [<PayNavBar />, <EditPayment />]}
+
           {queryReportPayment === "paymentreport" && [
             <PayNavBar />,
             <ReportPayment />,
@@ -328,6 +337,10 @@ const Dashboard = () => {
 
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
+
+
+
+
           {queryDisplayproduct === "allproduct" && [
             <ProductNavBar />,
             <Product />,
@@ -340,6 +353,7 @@ const Dashboard = () => {
             <ProductNavBar />,
             <ReportProduct />,
           ]}
+
 
           {/*Customer */}
           {queryCustomerCreate === "true" && [
@@ -359,6 +373,12 @@ const Dashboard = () => {
             <EditProfile />,
           ]}
           {queryCustomerList === "true" && [<CustomerNavBar />, <ListView />]}
+
+          {queryCreatepromotion === "createpromotion" && [
+            <PromotionNavBar />,
+            <PromotionCreate />,
+          ]}
+
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers

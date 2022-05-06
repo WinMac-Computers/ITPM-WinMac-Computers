@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { DeleteTwoTone } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [data, setData] = useState([]);
 
+  const history = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -17,6 +18,17 @@ const Product = () => {
     })();
   }, []);
 
+  const deleteProduct = async (id) => {
+    //method for deleting a todo
+    if (window.confirm("Do you want to delete !")) {
+      await axios.delete(`/product/delete/${id}`);
+      await axios
+        .get("/product/")
+        .then((res) => setData(res?.data))
+        .catch((error) => alert(error));
+    }
+  };
+
   return (
     <center>
       <div>
@@ -26,7 +38,7 @@ const Product = () => {
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
-              <table class="w-3/4 border-4 border-sky-700 text-center">
+              <table class="w-4/5 border-4 border-sky-700 text-center">
                 <thead class="border-b-4 border-b-sky-700">
                   <tr>
                     <th
@@ -104,7 +116,11 @@ const Product = () => {
                           {value.status}
                         </td>
                         <td class="text-2xl px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
-                          <DeleteTwoTone />
+                          <EditOutlined style={{ color: "green" }} />{" "}
+                          <DeleteOutlined
+                            style={{ color: "red" }}
+                            onClick={deleteProduct}
+                          />
                         </td>
                       </tr>
                     </tbody>
@@ -113,15 +129,22 @@ const Product = () => {
               </table>
             </div>
           </div>
-          <Link
-            to={`/admin-dashboard/${localStorage.getItem(
-              "username"
-            )}/create`}
-          >
-            <Button type="primary" danger>
+
+          <div className=" float-left ml-32 translate-x-2 mx-auto">
+            <Button
+              type="primary"
+              danger
+              onClick={() =>
+                history(
+                  `/admin-dashboard/${localStorage.getItem(
+                    "username"
+                  )}?_product=addproduct`
+                )
+              }
+            >
               Add Product
             </Button>
-          </Link>
+          </div>
         </div>
       </div>
     </center>
