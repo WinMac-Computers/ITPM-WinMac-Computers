@@ -6,26 +6,24 @@ import "../Customer/DisplayProfile.css";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
-const DisplayProfile = () => {
+const Complaint = () => {
   const [listOfUsers, setListOfUsers] = useState([]);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8070/customer").then((response) => {
+    axios.get("http://localhost:8070/complaint/").then((response) => {
       setListOfUsers(response.data);
     });
   }, []);
 
   const handleRemove = (id) => {
-    axios.delete(`http://localhost:8070/customer/delete/${id}`).then((res) => {
+    axios.delete(`http://localhost:8070/complaint/delete/${id}`).then((res) => {
       console.log("delete succes");
     });
   };
-  const filteredData = listOfUsers.filter(
-    (el) => el.name.toLowerCase().indexOf(query.toLowerCase()) >= 0
-  );
+
   const history = useNavigate();
-  console.log(filteredData);
+  console.log(listOfUsers);
   return (
     <div>
       <form
@@ -63,7 +61,7 @@ const DisplayProfile = () => {
             </Button>
           </center>
           <div className="homescreen__products">
-            {filteredData.length === 0 ? (
+            {listOfUsers.length === 0 ? (
               <div
                 className="alert alert-danger"
                 style={{ marginLeft: "50px" }}
@@ -81,51 +79,38 @@ const DisplayProfile = () => {
                 <br />
               </div>
             ) : (
-              filteredData.map((i) => {
-                const Logo = require(`../../../../public/images/${i.image}`);
+              listOfUsers.map((i) => {
                 return (
                   <div
-                    style={{
-                      display: "flex",
-                      display: "inline-block",
-                      justifyContent: "space-between",
-                    }}
+                    // style={{
+                    //   display: "flex",
+                    //   display: "inline-block",
+                    //   justifyContent: "space-between",
+                    // }}
                   >
                     <div className="product">
-                      <img src={Logo} />
                       <div className="product__info">
                         <p>
-                          👨<b style={{ color: "red" }}>Name : </b>
-                          {i.name}
+                          📛 <b style={{ color: "red" }}>First Name : </b>
+                          {i.fname}
                         </p>
                         <p>
-                          🏃<b style={{ color: "green" }}>Age : </b>
-                          {i.age} years old
+                          📛 <b style={{ color: "green" }}>Last Name : </b>
+                          {i.lname} years old
                         </p>
                         <p>
-                          👫<b style={{ color: "blue" }}>Gender: </b>
-                          {i.gender}
+                          📧 <b style={{ color: "blue" }}>Email: </b>
+                          {i.email}
                         </p>
                         <p>
-                          🏕<b style={{ color: "red" }}>Address: </b>
-                          {i.address}
+                          🧑‍🏫 <b style={{ color: "red" }}>Select Brand: </b>
+                          {i.selectb}
                         </p>
                         <p>
-                          📱<b style={{ color: "green" }}>Phone: </b>
-                          {i.phone}
+                          📝 <b style={{ color: "green" }}>Comment: </b>
+                          {i.comment}
                         </p>
-                        <p>
-                          💌<b style={{ color: "blue" }}>Email: </b>
-                          <span style={{ fontSize: "12px" }}>{i.email}</span>
-                        </p>
-
-                        <Link
-                          to={`/admin-dashboard/${localStorage.getItem("username")}?EditProfile=true&id=${i._id}`}
-                          className="info__button"
-                          style={{ width: "100%" }}
-                        >
-                          Edit
-                        </Link>
+                        
                       </div>
                     </div>
                   </div>
@@ -139,4 +124,4 @@ const DisplayProfile = () => {
   );
 };
 
-export default DisplayProfile;
+export default Complaint;

@@ -11,9 +11,7 @@ import Services from "./components/Services/Services";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 
-import CreateProfile from "./components/Admin/Customer/CreateProfile";
-import DisplayProfile from "./components/Admin/Customer/DisplayProfile";
-import Complaint from "./components/Admin/Customer/Complaint";
+
 import Edit from "./components/Admin/Customer/ListView";
 
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
@@ -39,11 +37,6 @@ const App = () => {
           />
 
           {/* Admin */}
-
-          <Route path="/createprofile" element={<CreateProfile/>} />
-          <Route path="/displayprofile" element={<DisplayProfile/>}/>
-          <Route path="/complaint" element={<Complaint/>}/>
-
 
           <Route
             path="/admin-dashboard/:username"
