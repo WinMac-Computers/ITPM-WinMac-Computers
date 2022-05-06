@@ -184,13 +184,13 @@ const Form = () => {
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <div>
-                    <input type="submit" value={"SUBMIT"} />
+                    <input type="submit" value={"SUBMIT"} className="input"/>
                   </div>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div>
                     <input
                       type="submit"
-                      value={"RESET"}
+                      value={"RESET"} className="input"
                       // onClick={resetFields}
                     />
                   </div>

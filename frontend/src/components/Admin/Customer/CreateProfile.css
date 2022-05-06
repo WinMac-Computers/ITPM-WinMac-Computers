@@ -1,13 +1,13 @@
-* {
+/* * {
     box-sizing: border-box;
   }
 
   label {
     padding: 12px 12px 12px 0;
     display: inline-block;
-  }
+  } */
 
-  input[type=submit] {
+  .input[type=submit] {
     background-color: #04AA6D;
     color: white;
     padding: 12px 20px;
@@ -17,11 +17,11 @@
     float: right;
   }
 
-  input[type=submit]:hover {
+  .input[type=submit]:hover {
     background-color: #45a049;
   }
   
-  .container {
+  /* .container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
@@ -37,14 +37,14 @@
     float: left;
     width: 75%;
     margin-top: 6px;
-  }
+  } */
   
   /* Clear floats after the columns */
-  .row:after {
+  /* .row:after {
     content: "";
     display: table;
     clear: both;
-  }
+  } */
   
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
