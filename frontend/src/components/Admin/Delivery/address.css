@@ -1,0 +1,44 @@
+.input {
+    margin-left: 10px;
+}
+
+.button {
+    background-color: #1046e8;
+    border-radius: 50px;
+    border-width: 0;
+    box-shadow: rgba(25,25,25,.04) 0 0 1px 0,rgba(0,0,0,.1) 0 3px 4px 0;
+    color: rgb(228, 228, 237);
+    cursor: pointer;
+    display: inline-block;
+    font-family: Arial,sans-serif;
+    font-size: 1em;
+    height: 50px;
+    padding: 0 25px;
+    transition: all 200ms;
+    margin-top: 15px;
+     
+}
+button:hover {
+    background-color: #1066e6;
+    transform: scale(1.05);
+}
+input, textarea{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  label {
+    color: #090412;
+    font-weight: bold;
+    width: 130px;
+    float: left;
+  
+  }
+  label:after { content: ": " }
+
+  .p{
+      font-weight: bold;
+  }
