@@ -28,7 +28,7 @@ app.listen(PORT, () => {
     console.log(`Server is up and running on port number ${PORT}`)
 })
 
-
+app.use("/address", require("./backend/routes/Address"));
 app.use("/payment", require("./backend/routes/Payment"));
 
 app.use("/product", require("./backend/routes/Product"));
@@ -37,4 +37,5 @@ app.use("/customer", require("./backend/routes/Customer"));
 
 app.use("/api/auth", require("./backend/routes/Auth"));
 
+app.use("/delivery", require("./backend/routes/Delivery"));
 
