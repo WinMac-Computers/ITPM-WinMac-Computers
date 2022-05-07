@@ -65,17 +65,17 @@ const Login = () => {
         //set a 5seconds timeout for authentication
 
         if (data.type === "Admin" && data.dept === "CM") {
-          navigate(`/admin-dashboard/${data.username}`);
+          navigate(`/admin-dashboard/${data.username}?_optCustomer=customer`);
         } else if (data.type === "Admin" && data.dept === "PM") {
-          navigate(`/admin-dashboard/${data.username}`);
+          navigate(`/admin-dashboard/${data.username}?_optProduct=product`);
         } else if (data.type === "Admin" && data.dept === "PRM") {
-          navigate(`/admin-dashboard/${data.username}`);
+          navigate(`/admin-dashboard/${data.username}?_optPromotion=promotion`);
         } else if (data.type === "Admin" && data.dept === "PAM") {
-          navigate(`/admin-dashboard/${data.username}`);
+          navigate(`/admin-dashboard/${data.username}?_optPayment=payment`);
         } else if (data.type === "Admin" && data.dept === "OM") {
-          navigate(`/admin-dashboard/${data.username}`);
+          navigate(`/admin-dashboard/${data.username}_optOrder=order`);
         } else if (data.type === "Admin" && data.dept === "DM") {
-          navigate(`/admin-dashboard/${data.username}`);
+          navigate(`/admin-dashboard/${data.username}?_optDelivery=delivery`);
         } else {
           navigate(`/${data.username}`);
         }
