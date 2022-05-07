@@ -27,6 +27,7 @@ import ProductDashboard from "../Product/Dashboard";
 import ProductNavBar from "../Product/NavBar";
 import Product from "../Product/Product";
 import AddProduct from "../Product/Create";
+import EditProduct from "../Product/Edit";
 import ReportProduct from "../Product/Report";
 
 //promotion components
@@ -65,10 +66,13 @@ const Dashboard = () => {
   const queryOrder = param.get("_optOrder");
   const queryDelivery = param.get("_optDelivery");
 
-  const queryDisplayproduct = param.get("_product");
-  const queryAddproduct = param.get("_product");
+  //product
+  const queryDisplayproduct = param.get("_optProduct");
+  const queryAddproduct = param.get("_optProduct");
+  const queryUpdateProduct = param.get("update");
   const queryReportProduct = param.get("_product");
 
+  //promotion
   const queryCreatepromotion = param.get("_promotion");
 
   const onCollapse = (collapsed) => {
@@ -106,7 +110,7 @@ const Dashboard = () => {
         document.getElementById("header").innerHTML = "Order Management";
         break;
       case "delivery":
-        document.getElementById("header").innerHTML = "Delivery MAnagement";
+        document.getElementById("header").innerHTML = "Delivery Management";
         break;
       default:
         break;
@@ -265,7 +269,7 @@ const Dashboard = () => {
           <h1 id="header" style={{ fontFamily: "serif", fontSize: "20px" }}>
             {queryCustomer === "customer"
               ? "Customer Management"
-              : queryProduct === "product"
+              : queryProduct === "product" || queryAddproduct === "addproduct"
               ? "Product Management"
               : queryPromotion === "promotion"
               ? "Promotion Management"
@@ -314,6 +318,7 @@ const Dashboard = () => {
           {queryOrder === "order" && <Order />}
           {queryDelivery === "delivery" && <Delivery />}
 
+          {/* product */}
           {queryDisplayproduct === "allproduct" && [
             <ProductNavBar />,
             <Product />,
@@ -321,6 +326,10 @@ const Dashboard = () => {
           {queryAddproduct === "addproduct" && [
             <ProductNavBar />,
             <AddProduct />,
+          ]}
+          {queryUpdateProduct === "true" && [
+            <ProductNavBar />,
+            <EditProduct />,
           ]}
           {queryReportProduct === "report" && [
             <ProductNavBar />,

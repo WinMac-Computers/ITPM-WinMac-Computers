@@ -38,7 +38,7 @@ const Product = () => {
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
-              <table class="w-4/5 border-4 border-sky-700 text-center">
+              <table class="w-4/5 border-4 border-sky-700 text-center max-w-full">
                 <thead class="border-b-4 border-b-sky-700">
                   <tr>
                     <th
@@ -116,10 +116,19 @@ const Product = () => {
                           {value.status}
                         </td>
                         <td class="text-2xl px-6 py-4 whitespace-nowrap border-r-4 border-sky-700">
-                          <EditOutlined style={{ color: "green" }} />{" "}
+                          <EditOutlined
+                            style={{ color: "green" }}
+                            onClick={() =>
+                              history(
+                                `/admin-dashbord/${localStorage.getItem(
+                                  "username"
+                                )}?update=true&id=${value._id}`
+                              )
+                            }
+                          />{" "}
                           <DeleteOutlined
                             style={{ color: "red" }}
-                            onClick={deleteProduct}
+                            onClick={() => deleteProduct(value._id)}
                           />
                         </td>
                       </tr>
