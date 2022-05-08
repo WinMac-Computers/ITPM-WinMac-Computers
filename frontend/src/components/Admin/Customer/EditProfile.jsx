@@ -67,6 +67,16 @@ const EditProfile = () => {
     setSelectedFile(event.target.files[0]);
   };
 
+  const resetFields = () => {
+    setName("")
+    setEmail("")
+    setage("")
+    setaddress("")
+    setphone("")
+    setgender("")
+    setSelectedFile("")
+  };
+
   // const resetFields = () => {
   //   window.location.reload();
   // };
@@ -270,9 +280,12 @@ const EditProfile = () => {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div>
                     <input
+                    
                       type="submit"
                       value={"RESET"}
-                      // onClick={resetFields}
+                      
+                      onClick={() => resetFields()}
+                      
                     />
                   </div>
                 </div>
