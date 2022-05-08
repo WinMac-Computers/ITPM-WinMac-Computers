@@ -191,16 +191,16 @@ const Create = () => {
                 style={{ width: "284%" }}
                 onChange={onchangeProductCatergory}
               >
-                <Option value="laptop">Laptop</Option>
-                <Option value="monitor">Monitor</Option>
-                <Option value="graphic">Graphic Card</Option>
-                <Option value="memory">Memory</Option>
-                <Option value="powersupply">Power Supply & UPS</Option>
-                <Option value="storage">Storage Drive</Option>
-                <Option value="coolingfan">Cooling Fan</Option>
-                <Option value="pc">PC Case</Option>
-                <Option value="keyboard">Keyboard & Mouse</Option>
-                <Option value="headset">Headset & Speaker</Option>
+                <Option value="Laptop">Laptop</Option>
+                <Option value="Monitor">Monitor</Option>
+                <Option value="Graphic Card">Graphic Card</Option>
+                <Option value="Memory">Memory</Option>
+                <Option value="Power supply & UPS">Power Supply & UPS</Option>
+                <Option value="Storage Drive">Storage Drive</Option>
+                <Option value="Cooling Fan">Cooling Fan</Option>
+                <Option value="PC Case">PC Case</Option>
+                <Option value="Keyboard & Mouse">Keyboard & Mouse</Option>
+                <Option value="Headset & Speaker">Headset & Speaker</Option>
               </Select>
             </Form.Item>
 
