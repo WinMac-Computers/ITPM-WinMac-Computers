@@ -11,9 +11,6 @@ const Order = new Schema ({
     orderedDate: {
         type: Date,
     },
-    modifiedDate: {
-        type: Date,
-    },
     status: {
         type: String,
     },
