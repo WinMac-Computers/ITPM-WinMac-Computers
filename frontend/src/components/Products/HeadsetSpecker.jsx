@@ -3,7 +3,7 @@ import axios from "axios";
 import { Spin } from "antd";
 import "./Style.css";
 
-const StorageDrive = () => {
+const HeadsetSpecker = () => {
   const [data, setData] = useState([]);
   const [spin, setSpin] = useState(false);
 
@@ -39,7 +39,7 @@ const StorageDrive = () => {
     }
   };
 
-  const filterData = data.filter((el) => el.productCatergory === "Storage Drive");
+  const filterData = data.filter((el) => el.productCatergory === "Headset & Specker");
 
   return (
     <>
@@ -95,4 +95,4 @@ const StorageDrive = () => {
   );
 };
 
-export default StorageDrive;
+export default HeadsetSpecker;
