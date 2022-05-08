@@ -45,7 +45,7 @@ const Complaint = () => {
         <div className="homescreen">
           <center>
             <span className="homescreen__title" style={{ color: "black" }}>
-              All Customer Profiles
+              All Customer Complaint
             </span>
             <Button
               style={{ float: "right" }}
