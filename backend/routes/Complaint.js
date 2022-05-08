@@ -24,17 +24,17 @@ router.route("/create").post( async (req, res) => {
     comment,
   });
 
-  // check the availability of saving data
-  const isAvailable = await Complaint.findOne({
-    fname: { $regex: new RegExp(fname, "i") },
-    email: email,
-  });
+  // // check the availability of saving data
+  // const isAvailable = await Complaint.findOne({
+  //   fname: { $regex: new RegExp(fname, "i") },
+  //   email: email,
+  // });
 
-  if (isAvailable) {
-    return res
-      .status(401)
-      .json({ error: "The customer profile! already exists 😒😒😒" });
-  }
+  // if (isAvailable) {
+  //   return res
+  //     .status(401)
+  //     .json({ error: "The customer profile! already exists 😒😒😒" });
+  // }
 
   
   await newComplaint
