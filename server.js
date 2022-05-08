@@ -7,15 +7,13 @@ dotenv.config();
 
 const URL = process.env.MONGODB_URL;
 
-mongoose.connect(URL, {
-   
-});
+mongoose.connect(URL, {});
 
 const connection = mongoose.connection;
 
 connection.once("open", () => {
-    console.log("MongoDB connection was successful");
-})
+  console.log("MongoDB connection was successful");
+});
 
 const app = express();
 
@@ -25,18 +23,14 @@ app.use(cors());
 app.use(express.json());
 
 app.listen(PORT, () => {
-    console.log(`Server is up and running on port number ${PORT}`)
-})
-
+  console.log(`Server is up and running on port number ${PORT}`);
+});
 
 app.use("/payment", require("./backend/routes/Payment"));
-
+app.use("/order", require("./backend/routes/Order"));
 app.use("/product", require("./backend/routes/Product"));
 app.use("/promotion", require("./backend/routes/Promotion"));
 app.use("/customer", require("./backend/routes/Customer"));
 app.use("/complaint", require("./backend/routes/Complaint"));
 
-
 app.use("/api/auth", require("./backend/routes/Auth"));
-
-

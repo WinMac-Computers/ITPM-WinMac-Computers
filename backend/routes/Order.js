@@ -1,10 +1,8 @@
 const router = require("express").Router();
-const req = require("express/lib/request");
-const res = require("express/lib/response");
 const Order = require("../models/Order");
 
 //route for inserting data to db
-router.route("/create").post(async, (req, res) => {
+router.route("/create").post(async (req, res) => {
     const {
         orderId,
         orderDetails,
@@ -73,7 +71,6 @@ router.route("/update/:id").put(async (req, res) => {
         orderId,
         orderDetails,
         orderedDate,
-        modifiedDate,
         status
     } = req.body;
 
@@ -82,7 +79,6 @@ router.route("/update/:id").put(async (req, res) => {
         orderId,
         orderDetails,
         orderedDate,
-        modifiedDate,
         status,
     })
     .then(() => res.json({ success: true }))
