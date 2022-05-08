@@ -3,6 +3,9 @@ import axios from "axios";
 import { Spin } from "antd";
 import "./Style.css";
 
+import Cart from "../User/Cart";
+import AdminCart from "../Cart/Cart";
+
 const Monitor = () => {
   const [data, setData] = useState([]);
   const [spin, setSpin] = useState(false);
@@ -12,7 +15,7 @@ const Monitor = () => {
       await axios
         .get("/product/")
         .then((res) => setData(res.data))
-      
+
         .catch((error) => alert(error));
     })();
 
@@ -25,14 +28,26 @@ const Monitor = () => {
     const productCategory = value.productCategory;
     const productPrice = value.productPrice;
     const productQty = value.productQty;
+
+    const user = localStorage.getItem("username");
     try {
-      await axios.post("/product/createCart", {
-        productCategory,
+      Cart.set(productName, {
         productName,
         productNumber,
+        productCategory,
         productPrice,
         productQty,
+        user,
       });
+      AdminCart.set(productName, {
+        productName,
+        productNumber,
+        productCategory,
+        productPrice,
+        productQty,
+        user,
+      });
+      console.log(Cart);
       alert("Successfully Added to the cart");
     } catch (error) {
       alert(error);
