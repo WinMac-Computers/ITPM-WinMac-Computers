@@ -52,6 +52,7 @@ const App = () => {
             path="/user-dashboard/:username"
             element={
               <PrivateRoute>
+                <Navbar />
                 <UserDashboard />
               </PrivateRoute>
             }
