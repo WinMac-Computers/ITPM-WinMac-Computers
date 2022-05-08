@@ -5,6 +5,8 @@ router.route("/create").post(async (req, res) => {
   const { user, productNumber, productName, productCategory, productImage } =
     req.body;
 
+    console.log(req.body);
+
   const productQty = Number(req.body.productQty);
 
   const productPrice = Number(req.body.productPrice);
