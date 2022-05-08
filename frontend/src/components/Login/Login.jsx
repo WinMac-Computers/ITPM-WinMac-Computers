@@ -30,6 +30,8 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const type = "user";
+
   const antIcon = (
     <LoadingOutlined style={{ fontSize: 24, marginBottom: "2px" }} spin />
   );
