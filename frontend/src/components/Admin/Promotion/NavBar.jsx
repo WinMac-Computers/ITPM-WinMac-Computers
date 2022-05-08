@@ -16,7 +16,7 @@ const NavBar = () => {
               history(
                 `/admin-dashboard/${localStorage.getItem(
                   "username"
-                )}?_optProduct=promotion`
+                )}?_optPromotion=promotion`
               )
             }
           />

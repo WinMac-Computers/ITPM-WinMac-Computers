@@ -23,7 +23,7 @@ const NavBar = () => {
               history(
                 `/admin-dashboard/${localStorage.getItem(
                   "username"
-                )}?_product=addproduct`
+                )}?_optProduct=addproduct`
               )
             }>
             Add Product
@@ -35,7 +35,7 @@ const NavBar = () => {
               history(
                 `/admin-dashboard/${localStorage.getItem(
                   "username"
-                )}?_product=allproduct`
+                )}?_optProduct=allproduct`
               )
             }
           >
