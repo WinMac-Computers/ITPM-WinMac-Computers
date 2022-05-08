@@ -11,13 +11,12 @@ import Services from "./components/Services/Services";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 
-
 import Edit from "./components/Admin/Customer/ListView";
 
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import UserDashboard from "./components/User/Dashboard";
 import Pcreate from "./components/Admin/Product/Create";
 import Payedit from "./components/Admin/Payment/Edit";
-
 
 const App = () => {
   return (
@@ -45,10 +44,18 @@ const App = () => {
                 <Dashboard />
               </PrivateRoute>
             }
-            
           />
 
-           <Route
+          <Route
+            path="/user-dashboard/:username"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
             path="/listview"
             element={
               <PrivateRoute>
@@ -56,7 +63,6 @@ const App = () => {
               </PrivateRoute>
             }
           />
-
 
           <Route
             path="/admin-dashboard/:username/create"
@@ -74,8 +80,6 @@ const App = () => {
               </PrivateRoute>
             }
           /> */}
-
-
         </Routes>
       </Router>
     </div>
