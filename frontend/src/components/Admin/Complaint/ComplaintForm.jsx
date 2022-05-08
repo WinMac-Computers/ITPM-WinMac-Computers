@@ -5,25 +5,24 @@ import { Spin } from "antd";
 
 const Form = () => {
   // a local state to store the currently selected file.
-  const [selectedFile, setSelectedFile] = React.useState(null);
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [age, setage] = useState("");
-  const [address, setaddress] = useState("");
-  const [phone, setphone] = useState("");
-  const [gender, setgender] = useState("");
+
+  const [email, setemail] = useState("");
+  const [fname, setfname] = useState("");
+  const [lname, setlname] = useState("");
+  const [selectb, setselectb] = useState("");
+  const [comment, setcomment] = useState("");
+  
   const [spin, setSpin] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("image", selectedFile);
     formData.append("email", email);
-    formData.append("name", name);
-    formData.append("address", address);
-    formData.append("phone", phone);
-    formData.append("age", age);
-    formData.append("gender", gender);
+    formData.append("fname", fname);
+    formData.append("lname", lname);
+    formData.append("selectb", selectb);
+    formData.append("comment", comment);
+
 
     try {
       const response = await axios({
@@ -32,7 +31,7 @@ const Form = () => {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      alert("Successfully Customer Added");
+      alert("Successfully Complaint Added");
     } catch (error) {
       alert(error);
     }
@@ -65,22 +64,22 @@ const Form = () => {
                 <table style={{ width: "100%" }}>
                   <tr>
                     <td>
-                      <label>Email :</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                      <label>First Name :</label> &nbsp;&nbsp;&nbsp;&nbsp;
                       <input
-                        type="email"
+                        type="text"
                         style={{
                           width: "70%",
                           height: "40px",
                           borderRadius: "10%",
                         }}
-                        name="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="fname"
+                        onChange={(e) => setfname(e.target.value)}
                         required
-                        placeholder="Enter Email"
+                        placeholder="Enter First Name"
                       />
                     </td>
                     <td>
-                      <label>Name :</label>{" "}
+                      <label>Last Name :</label>{" "}
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <input
                         type="text"
@@ -89,16 +88,32 @@ const Form = () => {
                           height: "40px",
                           borderRadius: "10%",
                         }}
-                        name="name"
-                        onChange={(e) => setName(e.target.value)}
+                        name="lname"
+                        onChange={(e) => setlname(e.target.value)}
                         required
-                        placeholder="Enter Name"
+                        placeholder="Enter Last Name"
                       />
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <label>Address :</label>{" "}
+                      <label>Email :</label>{" "}
+                      <input
+                        type="email"
+                        style={{
+                          width: "70%",
+                          height: "40px",
+                          borderRadius: "10%",
+                        }}
+                        name="email"
+                        onChange={(e) => setemail(e.target.value)}
+                        required
+                        placeholder="Enter Email"
+                      />
+                    </td>
+                    <td>
+                      {" "}
+                      <label>Enter Brand Name :</label>{" "}
                       <input
                         type="text"
                         style={{
@@ -106,91 +121,48 @@ const Form = () => {
                           height: "40px",
                           borderRadius: "10%",
                         }}
-                        name="address"
-                        onChange={(e) => setaddress(e.target.value)}
+                        name="selectb"
+                        onChange={(e) => setselectb(e.target.value)}
                         required
-                        placeholder="Enter Address"
-                      />
-                    </td>
-                    <td>
-                      {" "}
-                      <label>Phone Number :</label>{" "}
-                      <input
-                        type="phone"
-                        style={{
-                          width: "70%",
-                          height: "40px",
-                          borderRadius: "10%",
-                        }}
-                        name="phone"
-                        onChange={(e) => setphone(e.target.value)}
-                        required
-                        placeholder="Enter Phone Number"
+                        placeholder="Enter Brand Name "
                       />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       {" "}
-                      <label>Age :</label>{" "}
+                      <label>Comment :</label>{" "}
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <input
-                        type="number"
-                        style={{
-                          width: "70%",
-                          height: "40px",
-                          borderRadius: "10%",
-                        }}
-                        name="age"
-                        onChange={(e) => setage(e.target.value)}
-                        required
-                        placeholder="Enter Age"
-                      />
-                    </td>
-                    <td>
-                      {" "}
-                      <label for="gender" className="form-label">
-                        Gender
-                      </label>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <input
-                        style={{
-                          width: "70%",
-                          height: "40px",
-                          borderRadius: "10%",
-                        }}
                         type="text"
-                        placeholder="Enter Gender"
-                        name="gender"
-                        onChange={(e) => setgender(e.target.value)}
+                        style={{
+                          width: "70%",
+                          height: "40px",
+                          borderRadius: "10%",
+                        }}
+                        name="comment"
+                        onChange={(e) => setcomment(e.target.value)}
                         required
-                        pattern="[A-Za-z]+"
-                        title="Gender cannot contain any numbers or special characters"
+                        placeholder="Enter Comment"
                       />
                     </td>
+                    
                   </tr>
                 </table>{" "}
                 <br />
-                <div className="ml-20">
-                  <input
-                    type="file"
-                    onChange={handleFileSelect}
-                    name="image"
-                    required
-                  />
-                </div>
+               
                 <br />
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <div>
-                    <input type="submit" value={"SUBMIT"} className="input"/>
+                    <input type="submit" value={"UPDATE"} />
                   </div>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div>
                     <input
                       type="submit"
-                      value={"RESET"} className="input"
+                      value={"RESET"}
                       // onClick={resetFields}
                     />
                   </div>

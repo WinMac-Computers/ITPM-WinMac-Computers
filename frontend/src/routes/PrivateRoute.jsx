@@ -1,14 +1,31 @@
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { Spin } from "antd";
 
 //private route logic
 function PrivateRoute({ children }) {
-  const isAuthenticated = true;
+  const [loading, setLoading] = useState(true);
 
-  if (isAuthenticated) {
-    return children;
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
+
+  if (localStorage.getItem("authToken") === "null") {
+    return loading ? (
+      <center>
+        <div className=" my-56">
+          <h1 style={{ color: "red" }}>UnAuthorized Access!!!❌</h1>
+          <p>Rolling Back to the Login 👉</p>
+          <Spin size="large" />
+        </div>
+      </center>
+    ) : (
+      <Navigate to="/login" /> //if user not login or not authorized to the restricted routes, it may be navigated to the login
+    );
   }
-
-  return <Navigate to="/login" />; //if user not login or not authorized to the restricted routes, it may be navigated to the login
+  return children;
 }
 
 export default PrivateRoute;

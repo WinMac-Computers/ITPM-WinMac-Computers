@@ -15,6 +15,8 @@ import {
 import "antd/dist/antd.css";
 import "./Dashboard.css";
 
+import CarouselView from "./CarouselView";
+
 //payment components
 import PaymentDashboard from "../Payment/PayDashboard";
 import PayNavBar from "../Payment/NavBar";
@@ -34,6 +36,14 @@ import ReportProduct from "../Product/Report";
 import PromotionDashboard from "../Promotion/Dashboard";
 import PromotionNavBar from "../Promotion/NavBar";
 import PromotionCreate from "../Promotion/Create";
+
+//Customer Components
+import CustomerNavBar from "../Customer/NavBar";
+import CreateProfile from "../Customer/CreateProfile";
+import DisplayProfile from "../Customer/DisplayProfile";
+import Complaint from "../Complaint/Complaint";
+import ListView from "../Customer/ListView";
+import EditProfile from "../Customer/EditProfile";
 
 import Order from "../Order/Order";
 
@@ -72,7 +82,17 @@ const Dashboard = () => {
   const queryUpdateProduct = param.get("update");
   const queryReportProduct = param.get("_product");
 
+
   //promotion
+
+  //customer
+
+  const queryCustomerCreate = param.get("createProfile");
+  const queryCustomerDisplay = param.get("displayProfile");
+  const queryComplaint = param.get("complaint");
+  const queryCustomerList = param.get("listView");
+  const queryEditProfile = param.get("EditProfile");
+
   const queryCreatepromotion = param.get("_promotion");
 
   const onCollapse = (collapsed) => {
@@ -115,6 +135,16 @@ const Dashboard = () => {
       default:
         break;
     }
+  };
+
+  const logOutHandler = () => {
+    localStorage.setItem("authToken", null);
+    localStorage.removeItem("email");
+    localStorage.removeItem("username");
+    localStorage.removeItem("type");
+    localStorage.removeItem("dept");
+    history("/login");
+    window.location.reload();
   };
 
   return (
@@ -248,7 +278,10 @@ const Dashboard = () => {
         </Menu>
         {collapsed === false ? (
           <center className="my-12">
-            <Button icon={<LogoutOutlined className="-translate-y-0.5" />}>
+            <Button
+              icon={<LogoutOutlined className="-translate-y-0.5" />}
+              onClick={logOutHandler}
+            >
               Sign Out
             </Button>
           </center>
@@ -267,13 +300,20 @@ const Dashboard = () => {
           style={{ padding: 0, textAlign: "center" }}
         >
           <h1 id="header" style={{ fontFamily: "serif", fontSize: "20px" }}>
-            {queryCustomer === "customer"
+            {queryCustomer === "customer" ||
+            queryCustomerCreate === "true" ||
+            queryCustomerDisplay === "true" ||
+            queryComplaint === "true" ||
+            queryEditProfile === "true"
               ? "Customer Management"
               : queryProduct === "product" || queryAddproduct === "addproduct"
               ? "Product Management"
               : queryPromotion === "promotion"
               ? "Promotion Management"
-              : queryPayment === "payment"
+              : queryPayment === "payment" ||
+                queryDisplaypayment === "allpayment" ||
+                queryPaymentEdit === "true" ||
+                queryReportPayment === "paymentreport"
               ? "Payment Management"
               : queryOrder === "order"
               ? "Order Management"
@@ -288,14 +328,17 @@ const Dashboard = () => {
             <Breadcrumb.Item>{greet}</Breadcrumb.Item>
             <Breadcrumb.Item>Admin</Breadcrumb.Item>
           </Breadcrumb>
-          {/* {location.pathname ===
+          {location.pathname ===
             `/admin-dashboard/${localStorage.getItem("username")}` &&
             !queryCustomer &&
             !queryProduct &&
             !queryPromotion &&
             !queryPayment &&
             !queryOrder &&
-            !queryDelivery} */}
+            !queryDelivery &&
+            !queryDisplaypayment &&
+            !queryPaymentEdit &&
+            !queryReportPayment && <CarouselView />}
           {queryCustomer === "customer" && <Customer />}
           {queryProduct === "product" && [
             <ProductNavBar />,
@@ -309,7 +352,14 @@ const Dashboard = () => {
           {/* Payment */}
           {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
           {queryDisplaypayment === "allpayment" && [<PayNavBar />, <Payment />]}
+
+          {/* {queryPaymentEdit === "editpayment" && [
+            <PayNavBar />,
+            <EditPayment />,
+          ]} */}
+
           {queryPaymentEdit === "true" && [<PayNavBar />, <EditPayment />]}
+
           {queryReportPayment === "paymentreport" && [
             <PayNavBar />,
             <ReportPayment />,
@@ -335,6 +385,20 @@ const Dashboard = () => {
             <ProductNavBar />,
             <ReportProduct />,
           ]}
+
+          {/*Customer */}
+          {queryCustomerCreate === "true" && [
+            <CustomerNavBar />,
+            <CreateProfile />,
+          ]}
+          {queryCustomerDisplay === "true" && [
+            <CustomerNavBar />,
+            <DisplayProfile />,
+          ]}
+          {queryComplaint === "true" && [<CustomerNavBar />, <Complaint />]}
+          {queryEditProfile === "true" && [<CustomerNavBar />, <EditProfile />]}
+          {queryCustomerList === "true" && [<CustomerNavBar />, <ListView />]}
+
           {queryCreatepromotion === "createpromotion" && [
             <PromotionNavBar />,
             <PromotionCreate />,

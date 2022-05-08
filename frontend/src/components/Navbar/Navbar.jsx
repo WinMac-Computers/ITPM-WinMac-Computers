@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Logo from "../../assets/Logo/winmaclogo.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
 const NavBar = () => {
+  const history = useNavigate();
+
   let Links = [
     { name: "HOME", link: "/" },
     { name: "ABOUT", link: "/about" },
@@ -17,6 +20,15 @@ const NavBar = () => {
   const { pathname } = location;
 
   console.log(location);
+
+  const logOutHandler = () => {
+    localStorage.setItem("authToken", null);
+    localStorage.removeItem("username");
+    localStorage.removeItem("email");
+    localStorage.removeItem("type");
+    localStorage.removeItem("dept");
+    history("/login");
+  };
 
   return (
     <>
@@ -53,7 +65,11 @@ const NavBar = () => {
               </li>
             ))}
             <div className="flex space-x-6">
-              {pathname === "/" || pathname === "/login" || pathname === "/contact" || pathname === "/services" || pathname === "/about" ? (
+              {pathname === "/" ||
+              pathname === "/login" ||
+              pathname === "/contact" ||
+              pathname === "/services" ||
+              pathname === "/about" ? (
                 <Link to="/login">
                   <button className="inline-flex items-center bg-red-600 text-white border-0 py-1 px-3 focus:outline-none hover:bg-black rounded-full text-base mt-4 md:mt-0 translate-x-6">
                     Login
@@ -61,10 +77,27 @@ const NavBar = () => {
                   </button>
                 </Link>
               ) : (
-                <button className="inline-flex items-center bg-sky-600 text-white border-0 py-1 px-3 focus:outline-none hover:bg-black rounded-full text-base mt-4 md:mt-0 translate-x-6">
-                  Logout
-                  <ion-icon name="log-in"></ion-icon>
-                </button>
+                <div className=" flex item">
+                  <div className="bg-white w-28 hover:opacity-75 rounded-3xl flex justify-between items-center p-1 cursor-pointer">
+                    <NavLink
+                      to={`/user-dashboard/${localStorage.getItem(
+                        "username"
+                      )}/viewcart`}
+                    >
+                      <ShoppingCartOutlined className=" text-3xl translate-x-1" />
+                    </NavLink>
+                    {/* <div className=" rounded-full text-lg  border-4 -translate-x-2 border-red-400 px-1 text-slate-900 ">
+                      {data.length}
+                    </div> */}
+                  </div>
+                  <button
+                    className="inline-flex items-center bg-sky-600 text-white border-0 py-1 px-3 focus:outline-none hover:bg-black rounded-full text-base mt-4 md:mt-0 translate-x-6"
+                    onClick={logOutHandler}
+                  >
+                    Logout
+                    <ion-icon name="log-in"></ion-icon>
+                  </button>
+                </div>
               )}
             </div>
           </ul>
