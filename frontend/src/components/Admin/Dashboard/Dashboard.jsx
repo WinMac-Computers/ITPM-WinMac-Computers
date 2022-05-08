@@ -44,6 +44,7 @@ import DisplayProfile from "../Customer/DisplayProfile";
 import Complaint from "../Complaint/Complaint";
 import ListView from "../Customer/ListView";
 import EditProfile from "../Customer/EditProfile";
+import CMReport from "../Customer/Report";
 
 //Order Components
 import Order from "../Order/Order";
@@ -104,6 +105,7 @@ const Dashboard = () => {
   const queryComplaint = param.get("complaint");
   const queryCustomerList = param.get("listView");
   const queryEditProfile = param.get("EditProfile");
+  const queryCMReport = param.get("_cmreport")
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -901,7 +903,8 @@ const Dashboard = () => {
             queryCustomerCreate === "true" ||
             queryCustomerDisplay === "true" ||
             queryComplaint === "true" ||
-            queryEditProfile === "true"
+            queryEditProfile === "true" ||
+            queryCMReport === "true"
               ? "Customer Management"
               : queryProduct === "product" || queryAddproduct === "addproduct"
               ? "Product Management"
@@ -943,7 +946,13 @@ const Dashboard = () => {
             !queryAddOrder &&
             !queryAllOrders &&
             !queryOrderEdit &&
-            !queryOrderReport && <CarouselView />}
+            !queryOrderReport &&
+            !queryComplaint &&
+            !queryCustomerDisplay && 
+            !queryCustomerCreate &&
+            !queryCustomerList &&
+            !queryEditProfile && 
+            !queryCMReport && <CarouselView />}
           {queryCustomer === "customer" && <Customer />}
           {queryProduct === "product" && [
             <ProductNavBar />,
@@ -1018,6 +1027,7 @@ const Dashboard = () => {
           {queryComplaint === "true" && [<CustomerNavBar />, <Complaint />]}
           {queryEditProfile === "true" && [<CustomerNavBar />, <EditProfile />]}
           {queryCustomerList === "true" && [<CustomerNavBar />, <ListView />]}
+          {queryCMReport === "true" && [<CustomerNavBar />, <CMReport />]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
