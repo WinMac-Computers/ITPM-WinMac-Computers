@@ -90,7 +90,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optLaptop=laptop`
               );
             }}
@@ -104,7 +104,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optMonitor=monitor`
               );
             }}
@@ -118,7 +118,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optGraphicCard=graphic_card`
               );
             }}
@@ -132,7 +132,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optCoolingFan=cooling_fan`
               );
             }}
@@ -146,7 +146,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optStorageDrive=storage_drive`
               );
             }}
@@ -160,7 +160,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optPCcase=pc_case`
               );
             }}
@@ -174,7 +174,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optPowerSupplyUPS=power_supply`
               );
             }}
@@ -188,7 +188,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optKeyboardMouse=keyboard_mouse`
               );
             }}
@@ -202,7 +202,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optMemory=memory`
               );
             }}
@@ -216,7 +216,7 @@ const Dashboard = () => {
             onClick={() => {
               history(
                 `/user-dashboard/${localStorage.getItem(
-                  "firstName"
+                  "username"
                 )}?_optHeadsetSpecker=headset_specker`
               );
             }}
