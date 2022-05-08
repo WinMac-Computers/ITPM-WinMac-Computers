@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./CreateProfile.css";
+import "../Complaint/Complaint.css";
 import { Spin } from "antd";
 
-const Form = () => {
+const ComplaintForm = () => {
   // a local state to store the currently selected file.
 
   const [email, setemail] = useState("");
@@ -11,25 +11,27 @@ const Form = () => {
   const [lname, setlname] = useState("");
   const [selectb, setselectb] = useState("");
   const [comment, setcomment] = useState("");
-  
+
   const [spin, setSpin] = useState(false);
+
+  const resetFields = () => {
+    setemail("");
+    setfname("");
+    setlname("");
+    setselectb("");
+    setcomment("");
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("fname", fname);
-    formData.append("lname", lname);
-    formData.append("selectb", selectb);
-    formData.append("comment", comment);
-
 
     try {
-      const response = await axios({
-        method: "post",
-        url: "/customer/create",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+      await axios.post("/complaint/create", {
+        fname,
+        lname,
+        email,
+        selectb,
+        comment,
       });
       alert("Successfully Complaint Added");
     } catch (error) {
@@ -37,9 +39,9 @@ const Form = () => {
     }
   };
 
-  const handleFileSelect = async (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
+  // const handleFileSelect = async (event) => {
+  //   setSelectedFile(event.target.files[0]);
+  // };
 
   // const resetFields = () => {
   //   window.location.reload();
@@ -76,6 +78,7 @@ const Form = () => {
                         onChange={(e) => setfname(e.target.value)}
                         required
                         placeholder="Enter First Name"
+                        value={fname}
                       />
                     </td>
                     <td>
@@ -92,6 +95,7 @@ const Form = () => {
                         onChange={(e) => setlname(e.target.value)}
                         required
                         placeholder="Enter Last Name"
+                        value={lname}
                       />
                     </td>
                   </tr>
@@ -109,6 +113,7 @@ const Form = () => {
                         onChange={(e) => setemail(e.target.value)}
                         required
                         placeholder="Enter Email"
+                        value={email}
                       />
                     </td>
                     <td>
@@ -125,6 +130,7 @@ const Form = () => {
                         onChange={(e) => setselectb(e.target.value)}
                         required
                         placeholder="Enter Brand Name "
+                        value={selectb}
                       />
                     </td>
                   </tr>
@@ -144,27 +150,33 @@ const Form = () => {
                         onChange={(e) => setcomment(e.target.value)}
                         required
                         placeholder="Enter Comment"
+                        value={comment}
                       />
                     </td>
-                    
                   </tr>
                 </table>{" "}
                 <br />
-               
                 <br />
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <div>
-                    <input type="submit" value={"UPDATE"} />
+                    <input type="submit" value={"CREATE"} className="input" />
                   </div>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div>
-                    <input
-                      type="submit"
+                    <button
+                      type="button"
                       value={"RESET"}
-                      // onClick={resetFields}
-                    />
+                      style={{
+                        padding: "12px",
+                        background: "#04AA6D",
+                        color: "white",
+                      }}
+                      onClick={() => resetFields()}
+                    >
+                      RESET
+                    </button>
                   </div>
                 </div>
               </form>
@@ -176,4 +188,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default ComplaintForm;
