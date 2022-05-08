@@ -54,19 +54,22 @@ const ComplaintForm = () => {
   return (
     <div>
       <center>
+        <span className="homescreen__title font-bold"  style={{ color: "black" }}>
+          Create Complaint
+        </span>
         {spin === false ? (
           <div className=" my-56">
             <Spin size="large" />
           </div>
         ) : (
-          <div className=" bg-zinc-400 shadow-2xl w-3/4 h-1/2 ml-60  text-left">
+          <div className="  shadow-2xl w-3/4 h-1/2 ml-50  text-left">
             <div className=" mt-40">
               <form onSubmit={handleSubmit}>
                 <br />
                 <table style={{ width: "100%" }}>
                   <tr>
                     <td>
-                      <label>First Name :</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                      <label >First Name :</label> &nbsp;&nbsp;&nbsp;&nbsp;
                       <input
                         type="text"
                         style={{
@@ -83,7 +86,7 @@ const ComplaintForm = () => {
                     </td>
                     <td>
                       <label>Last Name :</label>{" "}
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <input
                         type="text"
                         style={{
@@ -99,6 +102,7 @@ const ComplaintForm = () => {
                       />
                     </td>
                   </tr>
+                  <br/>
                   <tr>
                     <td>
                       <label>Email :</label>{" "}
@@ -108,7 +112,7 @@ const ComplaintForm = () => {
                           width: "70%",
                           height: "40px",
                           borderRadius: "10%",
-                          marginLeft: "50px"
+                          marginLeft: "50px",
                         }}
                         name="email"
                         onChange={(e) => setemail(e.target.value)}
@@ -120,13 +124,14 @@ const ComplaintForm = () => {
                     <td>
                       {" "}
                       <label>Enter Brand Name :</label>{" "}
+                      &nbsp;
                       <input
                         type="text"
                         style={{
                           width: "70%",
                           height: "40px",
                           borderRadius: "10%",
-                          marginLeft: "10px"
+                          marginLeft: "10px",
                         }}
                         name="selectb"
                         onChange={(e) => setselectb(e.target.value)}
@@ -136,6 +141,7 @@ const ComplaintForm = () => {
                       />
                     </td>
                   </tr>
+                  <br/>
                   <tr>
                     <td>
                       {" "}
