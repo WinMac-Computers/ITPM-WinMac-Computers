@@ -1,4 +1,4 @@
-import React, { seEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { Popover, Button } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
@@ -7,6 +7,9 @@ import "antd/dist/antd.css";
 import Logo from "../../assets/Logo/winmaclogo.png";
 
 import UserProfile from "../User/UserProfile";
+import axios from "axios";
+
+import Cart from "../User/Cart";
 
 const NavBar = () => {
   let Links = [
@@ -19,8 +22,13 @@ const NavBar = () => {
   const { username } = useParams();
 
   const [open, setOpen] = useState(false);
+  const [initialData, setInitialData] = useState([]);
 
   const history = useNavigate();
+
+  useEffect(() => {
+    setInitialData([...Cart.values()]);
+  });
 
   const logoutHandler = () => {
     localStorage.setItem("authToken", null);
@@ -99,12 +107,12 @@ const NavBar = () => {
                   <NavLink
                     to={`/user-dashboard/${localStorage.getItem(
                       "username"
-                    )}/viewcart`}
+                    )}?_cart=true`}
                   >
                     <ShoppingCartOutlined className=" text-3xl translate-x-1" />
                   </NavLink>
                   <div className=" rounded-full text-lg  border-4 -translate-x-2 border-red-400 px-1 text-slate-900 ">
-                    01
+                    {initialData.length}
                   </div>
                 </div>
                 <button className="inline-flex items-center bg-sky-600 text-white border-0 py-1 px-3 focus:outline-none hover:bg-black rounded-full text-base mt-4 md:mt-0 translate-x-6">
