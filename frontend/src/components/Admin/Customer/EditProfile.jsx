@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CreateProfile.css";
 import { Spin, notification, Form } from "antd";
+import {useNavigate } from "react-router-dom"
 
 const EditProfile = () => {
   // a local state to store the currently selected file.
@@ -19,6 +20,7 @@ const EditProfile = () => {
   const param = new URLSearchParams(search);
 
   const id = param.get("id");
+  const history = useNavigate()
   
 
   useEffect(() => {
@@ -69,9 +71,11 @@ const EditProfile = () => {
   //   window.location.reload();
   // };
 
-  const ProfileHandlerUpdate = async (placement) => {
+  const ProfileHandlerUpdate = async (e,placement) => {
+    e.preventDefault()
     // create handler for saving data to the db
     setLoading(false);
+
 
     const config = {
       //headers
@@ -83,7 +87,7 @@ const EditProfile = () => {
     try {
       await axios.put(
         //use axios API
-        `/customer/update`,
+        `/customer/update/${id}`,
         {
           selectedFile,
           email,
@@ -104,6 +108,7 @@ const EditProfile = () => {
           placement,
         });
         form.resetFields();
+        history("/admin-dashboard/customermanager?displayProfile=true")
       }, 5000); //5seconds timeout
     } catch (error) {
       notification.error({
@@ -129,7 +134,7 @@ const EditProfile = () => {
         ) : (
           <div className=" bg-zinc-400 shadow-2xl w-3/4 h-1/2 ml-60  text-left">
             <div className=" mt-10">
-              <form onSubmit={"handleSubmit"}>
+              <form onSubmit={(e)=>ProfileHandlerUpdate(e,"top")}>
                 <br />
                 <table style={{ width: "100%" }}>
                   <tr>

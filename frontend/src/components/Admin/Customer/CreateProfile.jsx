@@ -42,9 +42,15 @@ const Form = () => {
     setSelectedFile(event.target.files[0]);
   };
 
-  // const resetFields = () => {
-  //   window.location.reload();
-  // };
+  const resetFields = () => {
+    setName("")
+    setEmail("")
+    setage("")
+    setaddress("")
+    setphone("")
+    setgender("")
+    setSelectedFile("")
+  };
 
   useEffect(() => {
     setTimeout(() => setSpin(true), 5000);
@@ -77,6 +83,7 @@ const Form = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         placeholder="Enter Email"
+                        value={email}
                       />
                     </td>
                     <td>
@@ -93,6 +100,7 @@ const Form = () => {
                         onChange={(e) => setName(e.target.value)}
                         required
                         placeholder="Enter Name"
+                        value={name}
                       />
                     </td>
                   </tr>
@@ -110,6 +118,7 @@ const Form = () => {
                         onChange={(e) => setaddress(e.target.value)}
                         required
                         placeholder="Enter Address"
+                        value={address}
                       />
                     </td>
                     <td>
@@ -126,6 +135,7 @@ const Form = () => {
                         onChange={(e) => setphone(e.target.value)}
                         required
                         placeholder="Enter Phone Number"
+                        value={phone}
                       />
                     </td>
                   </tr>
@@ -145,6 +155,7 @@ const Form = () => {
                         onChange={(e) => setage(e.target.value)}
                         required
                         placeholder="Enter Age"
+                        value={age}
                       />
                     </td>
                     <td>
@@ -166,6 +177,7 @@ const Form = () => {
                         required
                         pattern="[A-Za-z]+"
                         title="Gender cannot contain any numbers or special characters"
+                        value={gender}
                       />
                     </td>
                   </tr>
@@ -177,6 +189,7 @@ const Form = () => {
                     onChange={handleFileSelect}
                     name="image"
                     required
+                    value={selectedFile}
                   />
                 </div>
                 <br />
@@ -184,15 +197,17 @@ const Form = () => {
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <div>
-                    <input type="submit" value={"SUBMIT"} className="input"/>
+                    <input type="submit" value={"SUBMIT"} className="input" />
                   </div>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div>
-                    <input
-                      type="submit"
-                      value={"RESET"} className="input"
-                      // onClick={resetFields}
-                    />
+                    <button
+                      type="button"
+                      value={"RESET"}
+                  
+                      style={{padding:"12px" , background:"#04AA6D" , color:"white"}}
+                      onClick={() => resetFields()}
+                    >RESET</button>
                   </div>
                 </div>
               </form>

@@ -17,6 +17,8 @@ import Edit from "./components/Admin/Customer/ListView";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Pcreate from "./components/Admin/Product/Create";
 import Payedit from "./components/Admin/Payment/Edit";
+import Complaint from "./components/Admin/Complaint/Complaint";
+import ComplaintForm from "./components/Admin/Complaint/ComplaintForm";
 
 
 const App = () => {
@@ -63,6 +65,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Pcreate />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard/:username/csm-complaint"
+            element={
+              <PrivateRoute>
+                <ComplaintForm />
               </PrivateRoute>
             }
           />
