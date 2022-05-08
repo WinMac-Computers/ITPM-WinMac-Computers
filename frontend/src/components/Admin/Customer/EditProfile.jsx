@@ -274,13 +274,14 @@ const EditProfile = () => {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <div>
+                  <div style={{padding:"12px" , background:"#04AA6D" , color:"white"}}>
+                    
                     <input type="submit" value={"SUBMIT"} />
                   </div>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div>
                     <input
-                    
+                    style={{padding:"12px" , background:"#04AA6D" , color:"white"}}
                       type="submit"
                       value={"RESET"}
                       
