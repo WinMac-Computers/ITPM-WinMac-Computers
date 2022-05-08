@@ -45,7 +45,7 @@ const NavBar = () => {
               history(
                 `/admin-dashboard/${localStorage.getItem(
                   "username"
-                )}?_product=report`
+                )}?_optProduct=report`
               )
             }>
             Report

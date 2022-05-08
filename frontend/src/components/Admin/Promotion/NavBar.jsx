@@ -27,7 +27,7 @@ const NavBar = () => {
                 history(
                   `/admin-dashboard/${localStorage.getItem(
                     "username"
-                  )}?_promotion=createpromotion`
+                  )}?_optPromotion=createpromotion`
                 )
               }>
               Create
@@ -39,7 +39,7 @@ const NavBar = () => {
                 history(
                   `/admin-dashboard/${localStorage.getItem(
                     "username"
-                  )}?_product=true`
+                  )}?_optPromotion=resolved`
                 )
               }
             >
