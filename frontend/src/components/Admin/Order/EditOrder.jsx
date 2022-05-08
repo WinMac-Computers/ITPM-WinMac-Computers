@@ -47,9 +47,10 @@ const EditOrder = () => {
 
   const search = window.location.search;
   const params = new URLSearchParams(search);
-  const id = params.get("_id");
+  const id = params.get("id");
   const history = useNavigate();
 
+  console.log(id)
   const [loading, setLoading] = useState(false); //additional
   const [error, setError] = useState(false);
 
@@ -66,7 +67,7 @@ const EditOrder = () => {
             orderDetails: res.data.orderDetails,
             orderedDate: res.data.orderedDate,
             status: res.data.status,
-          });
+          }); console.log(res);
           setorderId(res.data.orderId);
           setOrderDetails(res.data.orderDetails);
           setOrderedDate(res.data.orderedDate);
