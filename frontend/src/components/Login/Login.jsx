@@ -59,6 +59,7 @@ const Login = () => {
       localStorage.setItem("email", data.email);
       localStorage.setItem("type", data?.type);
       localStorage.setItem("dept", data?.dept);
+      localStorage.setItem("id", data?.id);
 
       console.log(data.type);
       console.log(data.dept);
