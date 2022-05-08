@@ -14,7 +14,7 @@ const Complaint = () => {
     axios.get("http://localhost:8070/complaint/").then((response) => {
       setListOfUsers(response.data);
     });
-  }, []);
+  });
 
   const handleRemove = (id) => {
     axios.delete(`http://localhost:8070/complaint/delete/${id}`).then((res) => {
@@ -86,7 +86,7 @@ const Complaint = () => {
                           📝 <b style={{ color: "green" }}>Comment: </b>
                           {i.comment}
                         </p>
-                        
+                          <button onClick={() => handleRemove(i._id)} style={{float:"right" , background:"red" , color:"white"}}>Delete</button>
                       </div>
                     </div>
                   </div>
