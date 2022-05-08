@@ -174,6 +174,7 @@ const Dashboard = () => {
             style={{ cursor: "pointer" }}
           />
         </div>
+        {localStorage.getItem("username") === "customermanager" ? (
         <Menu
           theme="dark"
           mode="inline"
@@ -194,7 +195,118 @@ const Dashboard = () => {
           }
         >
           <Menu.Item
-            key="1"
+            key="1" 
+            icon={<UserAddOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("customer");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optCustomer=customer`
+              );
+            }}
+          >
+            Customer Management
+          </Menu.Item>
+          <Menu.Item
+            key="2" disabled
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("product");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optProduct=product`
+              );
+            }}
+          >
+            Product Management
+          </Menu.Item>
+          <Menu.Item
+            key="3" disabled
+            icon={<CommentOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("promotion");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPromotion=promotion`
+              );
+            }}
+          >
+            Promotion Management
+          </Menu.Item>
+          <Menu.Item
+            key="4" disabled
+            icon={<ProfileOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("payment");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPayment=payment`
+              );
+            }}
+          >
+            Payment Management
+          </Menu.Item>
+          <Menu.Item
+            key="5" disabled
+            icon={<ShoppingOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("order");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optOrder=order`
+              );
+            }}
+          >
+            Order Management
+          </Menu.Item>
+          <Menu.Item
+            key="6" disabled
+            icon={<ShoppingCartOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("delivery");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optDelivery=delivery`
+              );
+            }}
+          >
+            Delivery Management
+          </Menu.Item>
+        </Menu>
+        ): (localStorage.getItem("username") === "prodcutmanager") ? (
+          <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={
+            queryCustomer === "customer"
+              ? ["1"]
+              : queryProduct === "product"
+              ? ["2"]
+              : queryPromotion === "promotion"
+              ? ["3"]
+              : queryPayment === "payment"
+              ? ["4"]
+              : queryOrder === "order"
+              ? ["5"]
+              : queryDelivery === "delivery"
+              ? ["6"]
+              : null
+          }
+        >
+          <Menu.Item
+            key="1" disabled
             icon={<UserAddOutlined />}
             className="text-lg"
             onClick={() => {
@@ -224,7 +336,229 @@ const Dashboard = () => {
             Product Management
           </Menu.Item>
           <Menu.Item
+            key="3" disabled
+            icon={<CommentOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("promotion");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPromotion=promotion`
+              );
+            }}
+          >
+            Promotion Management
+          </Menu.Item>
+          <Menu.Item
+            key="4" disabled
+            icon={<ProfileOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("payment");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPayment=payment`
+              );
+            }}
+          >
+            Payment Management
+          </Menu.Item>
+          <Menu.Item
+            key="5" disabled
+            icon={<ShoppingOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("order");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optOrder=order`
+              );
+            }}
+          >
+            Order Management
+          </Menu.Item>
+          <Menu.Item
+            key="6" disabled
+            icon={<ShoppingCartOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("delivery");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optDelivery=delivery`
+              );
+            }}
+          >
+            Delivery Management
+          </Menu.Item>
+        </Menu>
+        ) : (localStorage.getItem("username") === "promotionmanager") ?  (
+          <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={
+            queryCustomer === "customer"
+              ? ["1"]
+              : queryProduct === "product"
+              ? ["2"]
+              : queryPromotion === "promotion"
+              ? ["3"]
+              : queryPayment === "payment"
+              ? ["4"]
+              : queryOrder === "order"
+              ? ["5"]
+              : queryDelivery === "delivery"
+              ? ["6"]
+              : null
+          }
+        >
+          <Menu.Item
+            key="1" disabled
+            icon={<UserAddOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("customer");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optCustomer=customer`
+              );
+            }}
+          >
+            Customer Management
+          </Menu.Item>
+          <Menu.Item
+            key="2" disabled
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("product");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optProduct=product`
+              );
+            }}
+          >
+            Product Management
+          </Menu.Item>
+          <Menu.Item
             key="3"
+            icon={<CommentOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("promotion");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPromotion=promotion`
+              );
+            }}
+          >
+            Promotion Management
+          </Menu.Item>
+          <Menu.Item
+            key="4" disabled
+            icon={<ProfileOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("payment");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPayment=payment`
+              );
+            }}
+          >
+            Payment Management
+          </Menu.Item>
+          <Menu.Item
+            key="5" disabled
+            icon={<ShoppingOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("order");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optOrder=order`
+              );
+            }}
+          >
+            Order Management
+          </Menu.Item>
+          <Menu.Item
+            key="6" disabled
+            icon={<ShoppingCartOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("delivery");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optDelivery=delivery`
+              );
+            }}
+          >
+            Delivery Management
+          </Menu.Item>
+        </Menu>
+        ): (localStorage.getItem("username") === "paymentmanager") ? (
+          <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={
+            queryCustomer === "customer"
+              ? ["1"]
+              : queryProduct === "product"
+              ? ["2"]
+              : queryPromotion === "promotion"
+              ? ["3"]
+              : queryPayment === "payment"
+              ? ["4"]
+              : queryOrder === "order"
+              ? ["5"]
+              : queryDelivery === "delivery"
+              ? ["6"]
+              : null
+          }
+        >
+          <Menu.Item
+            key="1" disabled
+            icon={<UserAddOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("customer");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optCustomer=customer`
+              );
+            }}
+          >
+            Customer Management
+          </Menu.Item>
+          <Menu.Item
+            key="2" disabled
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("product");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optProduct=product`
+              );
+            }}
+          >
+            Product Management
+          </Menu.Item>
+          <Menu.Item
+            key="3" disabled
             icon={<CommentOutlined />}
             className="text-lg"
             onClick={() => {
@@ -254,7 +588,229 @@ const Dashboard = () => {
             Payment Management
           </Menu.Item>
           <Menu.Item
+            key="5" disabled
+            icon={<ShoppingOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("order");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optOrder=order`
+              );
+            }}
+          >
+            Order Management
+          </Menu.Item>
+          <Menu.Item
+            key="6" disabled
+            icon={<ShoppingCartOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("delivery");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optDelivery=delivery`
+              );
+            }}
+          >
+            Delivery Management
+          </Menu.Item>
+        </Menu>
+        ): (localStorage.getItem("username") === "ordermanager") ? (
+          <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={
+            queryCustomer === "customer"
+              ? ["1"]
+              : queryProduct === "product"
+              ? ["2"]
+              : queryPromotion === "promotion"
+              ? ["3"]
+              : queryPayment === "payment"
+              ? ["4"]
+              : queryOrder === "order"
+              ? ["5"]
+              : queryDelivery === "delivery"
+              ? ["6"]
+              : null
+          }
+        >
+          <Menu.Item
+            key="1" disabled
+            icon={<UserAddOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("customer");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optCustomer=customer`
+              );
+            }}
+          >
+            Customer Management
+          </Menu.Item>
+          <Menu.Item
+            key="2" disabled
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("product");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optProduct=product`
+              );
+            }}
+          >
+            Product Management
+          </Menu.Item>
+          <Menu.Item
+            key="3" disabled
+            icon={<CommentOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("promotion");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPromotion=promotion`
+              );
+            }}
+          >
+            Promotion Management
+          </Menu.Item>
+          <Menu.Item
+            key="4" disabled
+            icon={<ProfileOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("payment");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPayment=payment`
+              );
+            }}
+          >
+            Payment Management
+          </Menu.Item>
+          <Menu.Item
             key="5"
+            icon={<ShoppingOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("order");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optOrder=order`
+              );
+            }}
+          >
+            Order Management
+          </Menu.Item>
+          <Menu.Item
+            key="6" disabled
+            icon={<ShoppingCartOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("delivery");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optDelivery=delivery`
+              );
+            }}
+          >
+            Delivery Management
+          </Menu.Item>
+        </Menu>
+        ): (
+          <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={
+            queryCustomer === "customer"
+              ? ["1"]
+              : queryProduct === "product"
+              ? ["2"]
+              : queryPromotion === "promotion"
+              ? ["3"]
+              : queryPayment === "payment"
+              ? ["4"]
+              : queryOrder === "order"
+              ? ["5"]
+              : queryDelivery === "delivery"
+              ? ["6"]
+              : null
+          }
+        >
+          <Menu.Item
+            key="1" disabled
+            icon={<UserAddOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("customer");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optCustomer=customer`
+              );
+            }}
+          >
+            Customer Management
+          </Menu.Item>
+          <Menu.Item
+            key="2" disabled
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("product");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optProduct=product`
+              );
+            }}
+          >
+            Product Management
+          </Menu.Item>
+          <Menu.Item
+            key="3" disabled
+            icon={<CommentOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("promotion");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPromotion=promotion`
+              );
+            }}
+          >
+            Promotion Management
+          </Menu.Item>
+          <Menu.Item
+            key="4" disabled
+            icon={<ProfileOutlined />}
+            className="text-lg"
+            onClick={() => {
+              setHeader("payment");
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_optPayment=payment`
+              );
+            }}
+          >
+            Payment Management
+          </Menu.Item>
+          <Menu.Item
+            key="5" disabled
             icon={<ShoppingOutlined />}
             className="text-lg"
             onClick={() => {
@@ -284,6 +840,7 @@ const Dashboard = () => {
             Delivery Management
           </Menu.Item>
         </Menu>
+        )}
         {collapsed === false ? (
           <center className="my-12">
             <Button
