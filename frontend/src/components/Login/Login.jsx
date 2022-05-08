@@ -30,8 +30,10 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const antIcon = <LoadingOutlined style={{ fontSize: 24, marginBottom: "2px" }} spin />;
-  
+  const antIcon = (
+    <LoadingOutlined style={{ fontSize: 24, marginBottom: "2px" }} spin />
+  );
+
   const loginHandler = async (e) => {
     //handler method for login
     e.preventDefault();
@@ -77,7 +79,7 @@ const Login = () => {
         } else if (data.type === "Admin" && data.dept === "DM") {
           navigate(`/admin-dashboard/${data.username}?_optDelivery=delivery`);
         } else {
-          navigate(`/${data.username}`);
+          navigate(`/user-dashboard/${data.username}`);
         }
 
         setLoading(false);
@@ -100,19 +102,16 @@ const Login = () => {
     //show password method when checkbox is enabled
     var x = document.getElementById("password");
     var y = document.getElementById("password1");
-    if(method === "X"){
-      if(x.type === "password"){
+    if (method === "X") {
+      if (x.type === "password") {
         x.type = "text";
-      }
-      else{
+      } else {
         x.type = "password";
       }
-    }
-    else{
-      if(y.type === "password"){
+    } else {
+      if (y.type === "password") {
         y.type = "text";
-      }
-      else{
+      } else {
         y.type = "password";
       }
     }
@@ -223,8 +222,8 @@ const Login = () => {
             </div>
             <label className="float-left form-check-label">
               <div className="text-white">
-                <input type="checkbox" onClick={() => showPassword("X")} /> Show Password{" "}
-                <i class="fa fa-rss" aria-hidden="true"></i>
+                <input type="checkbox" onClick={() => showPassword("X")} /> Show
+                Password <i class="fa fa-rss" aria-hidden="true"></i>
               </div>
             </label>
             <br />
@@ -309,8 +308,8 @@ const Login = () => {
             </div>
             <label className="float-left form-check-label">
               <div className="text-white">
-                <input type="checkbox" onClick={() => showPassword("Y")} /> Show Password{" "}
-                <i class="fa fa-rss" aria-hidden="true"></i>
+                <input type="checkbox" onClick={() => showPassword("Y")} /> Show
+                Password <i class="fa fa-rss" aria-hidden="true"></i>
               </div>
             </label>
             {isError && (
@@ -346,7 +345,14 @@ const Login = () => {
             <h1 className=" text-4xl">Hello, Dear Customer</h1>
             <p>Fastest and Excellent Care for Your Computers</p>
             <div className=" pt-4">
-              <button onClick={() => {SignUp(); setEmail(""); setPassword("");}} className="btn transparent">
+              <button
+                onClick={() => {
+                  SignUp();
+                  setEmail("");
+                  setPassword("");
+                }}
+                className="btn transparent"
+              >
                 SignUp
               </button>
             </div>
@@ -358,7 +364,15 @@ const Login = () => {
             <h3>One of us ?</h3>
             <p>We can change your problematic computer into smooth working.</p>
             <div className=" pt-4">
-              <button onClick={() => {SignIn(); setUsername(""); setEmail(""); setPassword("");}} className="btn transparent">
+              <button
+                onClick={() => {
+                  SignIn();
+                  setUsername("");
+                  setEmail("");
+                  setPassword("");
+                }}
+                className="btn transparent"
+              >
                 Sign in
               </button>
             </div>
