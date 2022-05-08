@@ -1,4 +1,4 @@
-import React, {seEffect, useState } from "react";
+import React, { seEffect, useState } from "react";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { Popover, Button } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
@@ -20,7 +20,6 @@ const NavBar = () => {
 
   const [open, setOpen] = useState(false);
 
-
   const history = useNavigate();
 
   const logoutHandler = () => {
@@ -33,11 +32,19 @@ const NavBar = () => {
     history("/login");
   };
 
-  
   const content = (
     <div style={{ width: "2px" }}>
       <div>
         <UserProfile />
+      </div>
+      <div className=" mt-1">
+        <NavLink
+          to={`/user-dashboard/${localStorage.getItem(
+            "username"
+          )}/?_complain=true`}
+        >
+          <Button>Add Complains</Button>
+        </NavLink>
       </div>
       <div className="mt-1">
         {/* <NavLink to="/login"> */}
