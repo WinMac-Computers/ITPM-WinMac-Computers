@@ -64,8 +64,6 @@ const Dashboard = () => {
   const param = new URLSearchParams(search);
 
   const queryCustomer = param.get("_optCustomer");
-  const queryProduct = param.get("_optProduct");
-  const queryPromotion = param.get("_optPromotion");
 
   //Payment
   const queryPayment = param.get("_optPayment");
@@ -77,13 +75,15 @@ const Dashboard = () => {
   const queryDelivery = param.get("_optDelivery");
 
   //product
+  const queryProduct = param.get("_optProduct");
   const queryDisplayproduct = param.get("_optProduct");
   const queryAddproduct = param.get("_optProduct");
   const queryUpdateProduct = param.get("update");
-  const queryReportProduct = param.get("_product");
-
+  const queryReportProduct = param.get("_optProduct");
 
   //promotion
+  const queryPromotion = param.get("_optPromotion");
+  const queryCreatepromotion = param.get("_optPromotion");
 
   //customer
 
@@ -92,8 +92,6 @@ const Dashboard = () => {
   const queryComplaint = param.get("complaint");
   const queryCustomerList = param.get("listView");
   const queryEditProfile = param.get("EditProfile");
-
-  const queryCreatepromotion = param.get("_promotion");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -344,10 +342,6 @@ const Dashboard = () => {
             <ProductNavBar />,
             <ProductDashboard />,
           ]}
-          {queryPromotion === "promotion" && [
-            <PromotionNavBar />,
-            <PromotionDashboard />,
-          ]}
 
           {/* Payment */}
           {queryPayment === "payment" && [<PayNavBar />, <PaymentDashboard />]}
@@ -386,6 +380,16 @@ const Dashboard = () => {
             <ReportProduct />,
           ]}
 
+          {/*Promotion */}
+          {queryPromotion === "promotion" && [
+            <PromotionNavBar />,
+            <PromotionDashboard />,
+          ]}
+          {queryCreatepromotion === "createpromotion" && [
+            <PromotionNavBar />,
+            <PromotionCreate />,
+          ]}
+
           {/*Customer */}
           {queryCustomerCreate === "true" && [
             <CustomerNavBar />,
@@ -398,11 +402,6 @@ const Dashboard = () => {
           {queryComplaint === "true" && [<CustomerNavBar />, <Complaint />]}
           {queryEditProfile === "true" && [<CustomerNavBar />, <EditProfile />]}
           {queryCustomerList === "true" && [<CustomerNavBar />, <ListView />]}
-
-          {queryCreatepromotion === "createpromotion" && [
-            <PromotionNavBar />,
-            <PromotionCreate />,
-          ]}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
