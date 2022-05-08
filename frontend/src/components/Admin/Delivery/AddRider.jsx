@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { Component } from 'react'
+import { useForm } from 'antd/lib/form/Form';
+import 'react-toastify/dist/ReactToastify.css';
 import "./delivery.css";
+import { toast } from 'react-toastify';
+
+
 
 export default class AddRider extends Component {
 
-    
-   
   constructor(props){
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
@@ -60,12 +63,15 @@ export default class AddRider extends Component {
      phone: '',
      email: '',
      nic: ''
+     
    })
   }
 
   render() {
     return (
+      
       <div >
+        
         <h3 style={{fontSize: "30px", textAlign: "center", textDecoration: "bold", marginTop: "10px"}}>Add New Rider</h3>
 
         <form onSubmit={this.onSubmit} >
@@ -76,6 +82,7 @@ export default class AddRider extends Component {
               placeholder='Jhone '
               value={this.state.name}
               onChange={this.onChangeName}
+              required
             />
             <p>Rider name is requird</p>
           </div>
@@ -85,6 +92,7 @@ export default class AddRider extends Component {
             placeholder='0771245785'
             value={this.state.phone}
             onChange={this.onChangePhone}
+            required minLength={10}
             />
             <p>Rider Phone is requird</p>
           </div>
@@ -94,6 +102,7 @@ export default class AddRider extends Component {
             placeholder='abc@gmail.com'
             value={this.state.email}
             onChange={this.onChangeEmail}
+            required
             />
             <p>Email is requird</p>
           </div>
@@ -103,20 +112,29 @@ export default class AddRider extends Component {
             placeholder='998547854v'
             value={this.state.nic}
             onChange={this.onChangeNic}
+            required
             />
             <p>NIC is requird</p>
           </div>
           <div className='form-group'>
-            <input type="submit" value= "Add Rider" className='btn btn-primary' />
+            <input type="submit" value= "Add Rider" className='btn btn-primary' 
+            onClick={this.notify}
+            />
+
+            
           </div>
 
           </div> 
           
         </form>
-
-     
         
+    
+      
       </div>
     )
+  }
+
+  notify(){
+    toast( 'Basic notification', {position: toast.POSITION.TOP_CENTER} );
   }
 }

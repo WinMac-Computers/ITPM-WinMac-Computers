@@ -5,7 +5,11 @@ import { HomeTwoTone } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import Riderlist from "./Riderlist";
 
+
 import img2 from "../assets/Delivery/delivery.png"
+
+
+
 
 const Delivery = () => {
   const [spin, setSpin] = useState(false);
@@ -36,9 +40,9 @@ const Delivery = () => {
                     <Link to="/riderlist"> <Button type="primary" danger>
                       Rider List
                     </Button></Link>
-
                     <Link to="/addrider"> <Button type="primary" danger>
                       Add Rider
+                      
                     </Button></Link>
                     <Link to="/orders"> <Button type="primary" danger>
                       Orders
@@ -47,6 +51,12 @@ const Delivery = () => {
                   </div>
                 </div>
               </div>
+             
+              <div>
+                <Riderlist></Riderlist>
+               
+              </div>
+       
               <div className="mt-2">
                 <img src={img2} alt="dashboard" />
               </div>

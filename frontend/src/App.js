@@ -14,12 +14,19 @@ import CreateProfile from "./components/Admin/Customer/CreateProfile";
 import Pcreate from "./components/Admin/Product/Create";
 import Payedit from "./components/Admin/Payment/Edit.jsx";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import Riderlist from "./components/Admin/Delivery/Riderlist";
+import AddRider from "./components/Admin/Delivery/AddRider";
+import UpdateRider from "./components/Admin/Delivery/UpdateRider";
+import Orders from "./components/Admin/Delivery/Orders";
+import Address from "./components/Admin/Delivery/Address";
 
 const App = () => {
   return (
     <div>
       <Router>
         <Routes>
+
+
           <Route path="/" element={[<Navbar />, <Home />, <Footer />]} />
           <Route path="/login" element={[<Navbar />, <Login />, <Footer />]} />
           <Route path="/about" element={[<Navbar />, <About />, <Footer />]} />
@@ -34,6 +41,14 @@ const App = () => {
 
           {/* Admin */}
           <Route path="/createprofile" element={<CreateProfile />} />
+
+
+          {/* delivery */}
+          <Route path="/riderlist" element={<Riderlist />}  />
+          <Route path="/addrider" element= {<AddRider/>} />
+          <Route path="/updaterider/:id" element= {<UpdateRider />}  />
+          <Route path="/orders" element= {<Orders />}  />
+          <Route path="/address" element= {<Address/>} />
 
           <Route
             path="/admin-dashboard/:username"

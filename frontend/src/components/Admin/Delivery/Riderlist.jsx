@@ -7,6 +7,7 @@ import "./delivery.css";
 import "antd/dist/antd.css";
 
 
+
 const Riderlist = () => {
 
   const [data, setRiders] = useState([]);
@@ -36,6 +37,9 @@ const Riderlist = () => {
     }
   };
 
+  
+  
+  
   return (
     <div className= "container">
         
@@ -43,7 +47,16 @@ const Riderlist = () => {
        <h1 style={{color: "black" , fontSize: "30px", textAlign: "center", marginTop:"10px"}}>Rider List</h1>
      </div>
       
-    
+      <div className='search' >
+          <input
+          className='form-control'
+          type= "search"
+          placeholder='Search'
+          name="searchQuery"
+       //   onChange={this.handleSearchArea}
+          >
+          </input>
+      </div>
 <center>
         
           <div class="flex flex-col">
@@ -124,6 +137,8 @@ const Riderlist = () => {
       </center>
     </div>
   )
+
 }
+
 
 export default Riderlist;

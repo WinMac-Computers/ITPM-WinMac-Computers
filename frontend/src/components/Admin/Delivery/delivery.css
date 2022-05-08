@@ -26,3 +26,13 @@ p {
     font-style: italic;
     font-size: medium;
 }
+
+table th {
+   font-size: larger;
+}
+
+.search {
+    width: 100px;
+    margin-left: 500px;
+    
+}

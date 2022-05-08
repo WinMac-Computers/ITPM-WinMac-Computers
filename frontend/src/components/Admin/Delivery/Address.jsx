@@ -23,14 +23,14 @@ export default function Address() {
         <div>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Field>
-                    <label> Name</label>
+                    <label>Name</label>
                     <input
-                        placeholder='Enter ull Name'
+                        placeholder='Enter Full Name'
                         type="text"
-                        {...register("fullName", { required: true })}
+                        {...register("name", { required: true })}
                     />
                 </Form.Field>
-                {errors.fullName && <p>Please check the Full Name</p>}
+                {errors.name && <p>Please check the Full Name</p>}
 
                 <Form.Field>
                     <label>Phone</label>
