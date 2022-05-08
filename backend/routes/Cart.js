@@ -52,3 +52,5 @@ router.route("/deleteCartItems").delete(async (req, res) => {
     .then(() => res.json({ message: "Successfully Deleted" }))
     .catch((error) => res.status(500).json({ success: false, error: error }));
 });
+
+module.exports = router;
