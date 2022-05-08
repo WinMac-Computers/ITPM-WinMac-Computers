@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Complaint/Complaint.css";
-import { Spin } from "antd";
+import { notification, Spin } from "antd";
 
 const ComplaintForm = () => {
   // a local state to store the currently selected file.
@@ -33,7 +33,12 @@ const ComplaintForm = () => {
         selectb,
         comment,
       });
-      alert("Successfully Complaint Added");
+      notification.open({
+       
+        description:
+          "Successfully added complaint😊",
+        
+      });
     } catch (error) {
       alert(error);
     }
@@ -54,7 +59,10 @@ const ComplaintForm = () => {
   return (
     <div>
       <center>
-        <span className="homescreen__title font-bold"  style={{ color: "black" }}>
+        <span
+          className="homescreen__title font-bold"
+          style={{ color: "black" }}
+        >
           Create Complaint
         </span>
         {spin === false ? (
@@ -69,7 +77,7 @@ const ComplaintForm = () => {
                 <table style={{ width: "100%" }}>
                   <tr>
                     <td>
-                      <label >First Name :</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                      <label>First Name :</label> &nbsp;&nbsp;&nbsp;&nbsp;
                       <input
                         type="text"
                         style={{
@@ -102,7 +110,7 @@ const ComplaintForm = () => {
                       />
                     </td>
                   </tr>
-                  <br/>
+                  <br />
                   <tr>
                     <td>
                       <label>Email :</label>{" "}
@@ -123,8 +131,7 @@ const ComplaintForm = () => {
                     </td>
                     <td>
                       {" "}
-                      <label>Enter Brand Name :</label>{" "}
-                      &nbsp;
+                      <label>Enter Brand Name :</label> &nbsp;
                       <input
                         type="text"
                         style={{
@@ -141,7 +148,7 @@ const ComplaintForm = () => {
                       />
                     </td>
                   </tr>
-                  <br/>
+                  <br />
                   <tr>
                     <td>
                       {" "}
