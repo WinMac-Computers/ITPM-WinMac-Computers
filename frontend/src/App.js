@@ -19,6 +19,8 @@ import AddRider from "./components/Admin/Delivery/AddRider";
 import UpdateRider from "./components/Admin/Delivery/UpdateRider";
 import Orders from "./components/Admin/Delivery/Orders";
 import Address from "./components/Admin/Delivery/Address";
+import Report from "./components/Admin/Delivery/Report";
+
 
 const App = () => {
   return (
@@ -49,6 +51,8 @@ const App = () => {
           <Route path="/updaterider/:id" element= {<UpdateRider />}  />
           <Route path="/orders" element= {<Orders />}  />
           <Route path="/address" element= {<Address/>} />
+          <Route path="/deliveryReport/:id" element={<Report/>} />
+          
 
           <Route
             path="/admin-dashboard/:username"

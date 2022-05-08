@@ -39,3 +39,4 @@ app.use("/api/auth", require("./backend/routes/Auth"));
 
 app.use("/delivery", require("./backend/routes/Delivery"));
 
+app.use("/dreport", require("./backend/routes/Dreport"));
