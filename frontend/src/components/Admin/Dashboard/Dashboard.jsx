@@ -44,7 +44,12 @@ import Complaint from "../Complaint/Complaint";
 import ListView from "../Customer/ListView";
 import EditProfile from "../Customer/EditProfile";
 
+//Order Components
 import Order from "../Order/Order";
+import OrderNavBar from "../Order/OrderNavBar";
+import CreateOrder from "../Order/CreateOrder";
+import AllOrders from "../Order/AllOrders";
+import EditOrder from "../Order/EditOrder";
 
 import Customer from "../Customer/Customer";
 
@@ -72,7 +77,12 @@ const Dashboard = () => {
   const queryReportPayment = param.get("_payment");
   const queryPaymentEdit = param.get("edit");
 
+  //Order
   const queryOrder = param.get("_optOrder");
+  const queryAddOrder = param.get("_order");
+  const queryAllOrders = param.get("_order");
+  const queryOrderEdit = param.get("oedit");
+
   const queryDelivery = param.get("_optDelivery");
 
   const queryDisplayproduct = param.get("_product");
@@ -309,7 +319,10 @@ const Dashboard = () => {
                 queryPaymentEdit === "true" ||
                 queryReportPayment === "paymentreport"
               ? "Payment Management"
-              : queryOrder === "order"
+              : queryOrder === "order" ||
+                queryAddOrder === "addorder" ||
+                queryAllOrders === "allorder" ||
+                queryOrderEdit === "true"
               ? "Order Management"
               : queryDelivery === "delivery"
               ? "Delivery Management"
@@ -332,7 +345,10 @@ const Dashboard = () => {
             !queryDelivery &&
             !queryDisplaypayment &&
             !queryPaymentEdit &&
-            !queryReportPayment && <CarouselView />}
+            !queryReportPayment &&
+            !queryAddOrder &&
+            !queryAllOrders &&
+            !queryOrderEdit && <CarouselView />}
           {queryCustomer === "customer" && <Customer />}
           {queryProduct === "product" && [
             <ProductNavBar />,
@@ -359,7 +375,12 @@ const Dashboard = () => {
             <ReportPayment />,
           ]}
 
-          {queryOrder === "order" && <Order />}
+          {/* Order */}
+          {queryOrder === "order" && [<OrderNavBar />, <Order />]}
+          {queryAddOrder === "addorder" && [<OrderNavBar />, <CreateOrder />]}
+          {queryAllOrders === "allorder" && [<OrderNavBar />, <AllOrders />]}
+          {queryOrderEdit === "true" && [<OrderNavBar />, <EditOrder />]}
+
           {queryDelivery === "delivery" && <Delivery />}
 
           {queryDisplayproduct === "allproduct" && [
