@@ -20,6 +20,8 @@ import Monitor from "../Products/Monitor";
 import Storage from "../Products/StorageDrive";
 import PowerSupplyUPS from "../Products/PowerSupplyUPS";
 
+import Complaint from "../Admin/Complaint/ComplaintForm";
+
 const { Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
@@ -40,6 +42,8 @@ const Dashboard = () => {
   const queryStorageDrive = param.get("_optStorageDrive");
   const queryPCcase = param.get("_optPCcase");
   const queryKeyboardMouse = param.get("_optKeyboardMouse");
+
+  const queryComplain = param.get("_complain");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -240,7 +244,8 @@ const Dashboard = () => {
             !queryPowerSupplyUPS &&
             !queryPCcase &&
             !queryStorageDrive &&
-            !queryKeyboardMouse && <User />}
+            !queryKeyboardMouse &&
+            !queryComplain && <User />}
 
           {queryLaptop === "laptop" && <Laptop />}
           {queryCoolingFan === "cooling_fan" && <CoolingFan />}
@@ -252,6 +257,8 @@ const Dashboard = () => {
           {queryStorageDrive === "storage_drive" && <Storage />}
           {queryPCcase === "pc_case" && <PCcase />}
           {queryKeyboardMouse === "keyboard_mouse" && <KeyboardMouse />}
+
+          {queryComplain === "true" && <Complaint />}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyright © {date.getFullYear()} WinMac Computers
