@@ -73,7 +73,7 @@ const Login = () => {
         } else if (data.type === "Admin" && data.dept === "PAM") {
           navigate(`/admin-dashboard/${data.username}?_optPayment=payment`);
         } else if (data.type === "Admin" && data.dept === "OM") {
-          navigate(`/admin-dashboard/${data.username}_optOrder=order`);
+          navigate(`/admin-dashboard/${data.username}?_optOrder=order`);
         } else if (data.type === "Admin" && data.dept === "DM") {
           navigate(`/admin-dashboard/${data.username}?_optDelivery=delivery`);
         } else {
