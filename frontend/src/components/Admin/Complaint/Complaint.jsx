@@ -26,20 +26,7 @@ const Complaint = () => {
   console.log(listOfUsers);
   return (
     <div>
-      <form
-        className="d-flex"
-        class="block p-2 pl-10 w-full rounded-lg border sm:text-sm"
-      >
-        <input
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          style={{ width: "100%" }}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </form>
+    
 
       <div className="bg4">
         <div className="homescreen">
@@ -47,18 +34,7 @@ const Complaint = () => {
             <span className="homescreen__title" style={{ color: "black" }}>
               All Customer Complaint
             </span>
-            <Button
-              style={{ float: "right" }}
-              onClick={() =>
-                history(
-                  `/admin-dashboard/${localStorage.getItem(
-                    "username"
-                  )}?listView=true`
-                )
-              }
-            >
-              Table View
-            </Button>
+  
           </center>
           <div className="homescreen__products">
             {listOfUsers.length === 0 ? (

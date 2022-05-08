@@ -59,6 +59,20 @@ const NavBar = () => {
             }
           >
             Complaints
+          </Button> {" "}
+
+           <Button
+            type="primary"
+            danger
+            onClick={() =>
+              history(
+                `/admin-dashboard/${localStorage.getItem(
+                  "username"
+                )}?_cmreport=true`
+              )
+            }
+          >
+            Report
           </Button>
         </div>
       </div>
