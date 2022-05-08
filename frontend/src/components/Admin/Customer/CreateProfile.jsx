@@ -189,7 +189,7 @@ const Form = () => {
                     onChange={handleFileSelect}
                     name="image"
                     required
-                    value={selectedFile}
+                    // value={selectedFile}
                   />
                 </div>
                 <br />
