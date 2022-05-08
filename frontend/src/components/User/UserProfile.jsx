@@ -20,9 +20,7 @@ const tailLayout = {
 };
 
 const UserProfile = () => {
-  const [firstName, setFirstname] = useState("");
-  const [lastName, setLastname] = useState("");
-  const [contactNo, setContactno] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -33,17 +31,13 @@ const UserProfile = () => {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`/api/auth/getUserID/${id}`)
+        .get(`/api/auth/get/${id}`)
         .then((res) => {
           form.setFieldsValue({
-            firstName: res.data.firstName,
-            lastName: res.data.lastName,
-            contactNo: res.data.contactNo,
+            username: res.data.username,
             email: res.data.email,
           });
-          setFirstname(res.data.firstName);
-          setLastname(res.data.lastName);
-          setContactno(res.data.contactNo);
+          setUsername(res.data.username);
           setEmail(res.data.email);
         })
         .catch((err) => alert(err));
@@ -63,11 +57,9 @@ const UserProfile = () => {
     try {
       await axios.put(
         //use axios API
-        `/api/auth/updateUser/${id}`,
+        `/api/auth/update/${id}`,
         {
-          firstName,
-          lastName,
-          contactNo,
+          username,
         },
         config
       );
@@ -122,7 +114,7 @@ const UserProfile = () => {
         className="w-20"
         onClick={() =>
           showModal(
-            `/user-dashboard/${localStorage.getItem("firstName")}/profile/${id}`
+            `/user-dashboard/${localStorage.getItem("username")}/profile/${id}`
           )
         }
       >
@@ -153,8 +145,8 @@ const UserProfile = () => {
               onFinish={() => updateHandler("top")}
             >
               <Form.Item
-                name="firstName"
-                label="First Name"
+                name="username"
+                label="Username"
                 rules={[
                   {
                     required: true,
@@ -163,46 +155,10 @@ const UserProfile = () => {
               >
                 <Input
                   style={{ width: "140%" }}
-                  placeholder="Enter First Name"
+                  placeholder="Enter Username"
                   prefix={<FileDoneOutlined className="site-form-item-icon" />}
-                  onChange={(e) => setFirstname(e.target.value)}
-                  value={firstName}
-                />
-              </Form.Item>
-              <Form.Item
-                name="lastName"
-                label="Last Name"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input
-                  style={{ width: "140%" }}
-                  placeholder="Enter Last Name"
-                  prefix={<FileDoneOutlined className="site-form-item-icon" />}
-                  onChange={(e) => setLastname(e.target.value)}
-                  value={lastName}
-                />
-              </Form.Item>
-
-              <Form.Item
-                name="contactNo"
-                label="Contact No"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input
-                  style={{ width: "140%" }}
-                  placeholder="Enter Product Price"
-                  prefix={<ContactsOutlined className="site-form-item-icon" />}
-                  onChange={(e) => setContactno(e.target.value)}
-                  value={contactNo}
-                  type="number"
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
                 />
               </Form.Item>
 
@@ -216,7 +172,7 @@ const UserProfile = () => {
                 ]}
               >
                 <Input
-                  style={{ width: "140%" }}
+                  style={{ width: "155%" }}
                   prefix={<FileDoneOutlined className="site-form-item-icon" />}
                   disabled
                   type="email"
