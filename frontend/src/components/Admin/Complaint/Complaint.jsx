@@ -47,18 +47,7 @@ const Complaint = () => {
             <span className="homescreen__title" style={{ color: "black" }}>
               All Customer Complaint
             </span>
-            <Button
-              style={{ float: "right" }}
-              onClick={() =>
-                history(
-                  `/admin-dashboard/${localStorage.getItem(
-                    "username"
-                  )}?listView=true`
-                )
-              }
-            >
-              Table View
-            </Button>
+  
           </center>
           <div className="homescreen__products">
             {listOfUsers.length === 0 ? (
