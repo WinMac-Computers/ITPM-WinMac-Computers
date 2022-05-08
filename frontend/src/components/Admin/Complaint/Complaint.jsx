@@ -26,20 +26,7 @@ const Complaint = () => {
   console.log(listOfUsers);
   return (
     <div>
-      <form
-        className="d-flex"
-        class="block p-2 pl-10 w-full rounded-lg border sm:text-sm"
-      >
-        <input
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          style={{ width: "100%" }}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </form>
+    
 
       <div className="bg4">
         <div className="homescreen">
