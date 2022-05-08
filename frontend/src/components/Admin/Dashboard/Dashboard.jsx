@@ -91,7 +91,7 @@ const Dashboard = () => {
   const queryProduct = param.get("_optProduct");
   const queryDisplayproduct = param.get("_optProduct");
   const queryAddproduct = param.get("_optProduct");
-  const queryUpdateProduct = param.get("update");
+  const queryUpdateProduct = param.get("_optProduct");
   const queryReportProduct = param.get("_optProduct");
 
   //promotion

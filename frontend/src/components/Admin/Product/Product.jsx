@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Table, Button, notification, message } from "antd";
 import axios from "axios";
 
@@ -12,7 +12,6 @@ const AllProducts = () => {
   const [loader, setLoader] = useState(true);
 
   const history = useNavigate();
-
 
   useEffect(() => {
     (async () => {
@@ -52,7 +51,7 @@ const AllProducts = () => {
             history(
               `/admin-dashbord/${localStorage.getItem(
                 "username"
-              )}?update=true&id=${record._id}`
+              )}?_optProduct=true&id=${record._id}`
             )
           }
         >
