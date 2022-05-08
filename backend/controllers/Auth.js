@@ -185,5 +185,6 @@ const sendToken = (user, statusCode, res) => {
     const email = user.email;
     const type = user.type;
     const dept = user.dept;
-    res.status(200).json({ success: true, token, username, email, type, dept });
+    const id = user._id;
+    res.status(200).json({ success: true, token, username, email, type, dept, id });
 };
