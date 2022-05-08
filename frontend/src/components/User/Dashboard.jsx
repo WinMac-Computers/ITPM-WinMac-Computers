@@ -9,13 +9,16 @@ import {
 import User from "./User";
 
 //Product components
+import CoolingFan from "../Products/CoolingFan";
+import GraphicCard from "../Products/GraphicCard";
+import HeadsetSpecker from "../Products/HeadsetSpecker";
+import KeyboardMouse from "../Products/KeyboardMouse";
 import Laptop from "../Products/Laptop";
+import Memory from "../Products/Memory";
+import PCcase from "../Products/PCcase";
 import Monitor from "../Products/Monitor";
 import Storage from "../Products/StorageDrive";
-import GraphicCard from "../Products/GraphicCard";
-import Processor from "../Products/Processor";
-import KeyboardMouse from "../Products/KeyboardMouse";
-import PCcase from "../Products/PCcase";
+import PowerSupplyUPS from "../Products/PowerSupplyUPS";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -28,9 +31,12 @@ const Dashboard = () => {
   const param = new URLSearchParams(search);
 
   const queryLaptop = param.get("_optLaptop");
+  const queryCoolingFan = param.get("_optCoolingFan");
   const queryMonitor = param.get("_optMonitor");
   const queryGraphicCard = param.get("_optGraphicCard");
-  const queryProcessor = param.get("_optProcessor");
+  const queryMemory = param.get("_optMemory");
+  const queryHeadsetSpecker = param.get("_optHeadsetSpecker");
+  const queryPowerSupplyUPS = param.get("_optPowerSupplyUPS");
   const queryStorageDrive = param.get("_optStorageDrive");
   const queryPCcase = param.get("_optPCcase");
   const queryKeyboardMouse = param.get("_optKeyboardMouse");
@@ -60,14 +66,20 @@ const Dashboard = () => {
               ? ["2"]
               : queryGraphicCard === "graphic_card"
               ? ["3"]
-              : queryProcessor === "processor"
+              : queryCoolingFan === "cooling_fan"
               ? ["4"]
               : queryStorageDrive === "storage_drive"
               ? ["5"]
               : queryPCcase === "pc_case"
               ? ["6"]
-              : queryKeyboardMouse === "keyboard_mouse"
+              : queryPowerSupplyUPS === "power_supply"
               ? ["7"]
+              : queryKeyboardMouse === "keyboard_mouse"
+              ? ["8"]
+              : queryMemory === "memory"
+              ? ["9"]
+              : queryHeadsetSpecker === "headset_specker"
+              ? ["10"]
               : null
           }
         >
@@ -121,11 +133,11 @@ const Dashboard = () => {
               history(
                 `/user-dashboard/${localStorage.getItem(
                   "firstName"
-                )}?_optProcessor=processor`
+                )}?_optCoolingFan=cooling_fan`
               );
             }}
           >
-            Processor
+            Cooling Fan
           </Menu.Item>
           <Menu.Item
             key="5"
@@ -163,11 +175,53 @@ const Dashboard = () => {
               history(
                 `/user-dashboard/${localStorage.getItem(
                   "firstName"
+                )}?_optPowerSupplyUPS=power_supply`
+              );
+            }}
+          >
+           Power Supply & UPS
+          </Menu.Item>
+          <Menu.Item
+            key="8"
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              history(
+                `/user-dashboard/${localStorage.getItem(
+                  "firstName"
                 )}?_optKeyboardMouse=keyboard_mouse`
               );
             }}
           >
             Keyboard & Mouse
+          </Menu.Item>
+          <Menu.Item
+            key="9"
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              history(
+                `/user-dashboard/${localStorage.getItem(
+                  "firstName"
+                )}?_optMemory=memory`
+              );
+            }}
+          >
+            Memory
+          </Menu.Item>
+          <Menu.Item
+            key="10"
+            icon={<FundProjectionScreenOutlined />}
+            className="text-lg"
+            onClick={() => {
+              history(
+                `/user-dashboard/${localStorage.getItem(
+                  "firstName"
+                )}?_optHeadsetSpecker=headset_specker`
+              );
+            }}
+          >
+            Headset & Specker
           </Menu.Item>
         </Menu>
       </Sider>
@@ -176,19 +230,25 @@ const Dashboard = () => {
           <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
 
           {location.pathname ===
-            `/user-dashboard/${localStorage.getItem("firstName")}` &&
+            `/user-dashboard/${localStorage.getItem("username")}` &&
             !queryLaptop &&
+            !queryCoolingFan &&
             !queryMonitor &&
-            !queryProcessor &&
-            !queryPCcase &&
             !queryGraphicCard &&
+            !queryMemory &&
+            !queryHeadsetSpecker &&
+            !queryPowerSupplyUPS &&
+            !queryPCcase &&
             !queryStorageDrive &&
             !queryKeyboardMouse && <User />}
 
           {queryLaptop === "laptop" && <Laptop />}
+          {queryCoolingFan === "cooling_fan" && <CoolingFan />}
           {queryMonitor === "monitor" && <Monitor />}
           {queryGraphicCard === "graphic_card" && <GraphicCard />}
-          {queryProcessor === "processor" && <Processor />}
+          {queryMemory === "memory" && <Memory />}
+          {queryHeadsetSpecker === "headset_specker" && <HeadsetSpecker />}
+          {queryPowerSupplyUPS === "power_supply" && <PowerSupplyUPS />}
           {queryStorageDrive === "storage_drive" && <Storage />}
           {queryPCcase === "pc_case" && <PCcase />}
           {queryKeyboardMouse === "keyboard_mouse" && <KeyboardMouse />}
